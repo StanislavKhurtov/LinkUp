@@ -1,0 +1,48 @@
+{
+  "name": "socnet",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "format": "prettier --write src",
+    "lint": "eslint \"{src,apps,libs,test}/**/*.{ts,tsx}\" --fix --no-error-on-unmatched-pattern && stylelint --fix src/{,*/}*.{scss,css} --allow-empty-input",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "dependencies": {
+    "@fontsource/roboto": "^5.0.8",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@it-incubator/eslint-config": "^1.0.2",
+    "@it-incubator/prettier-config": "^0.1.2",
+    "@it-incubator/stylelint-config": "^1.0.3",
+    "@storybook/addon-essentials": "7.6.8",
+    "@storybook/addon-interactions": "7.6.8",
+    "@storybook/addon-links": "7.6.8",
+    "@storybook/addon-onboarding": "1.0.10",
+    "@storybook/blocks": "7.6.8",
+    "@storybook/react": "7.6.8",
+    "@storybook/react-vite": "7.6.8",
+    "@storybook/test": "7.6.8",
+    "@types/node": "^20.11.4",
+    "@types/react": "^18.2.43",
+    "@types/react-dom": "^18.2.17",
+    "@typescript-eslint/eslint-plugin": "^6.14.0",
+    "@typescript-eslint/parser": "^6.14.0",
+    "@vitejs/plugin-react-swc": "^3.5.0",
+    "eslint": "^8.55.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
+    "eslint-plugin-storybook": "^0.6.15",
+    "sass": "^1.69.7",
+    "storybook": "7.6.8",
+    "stylelint": "^16.1.0",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.8"
+  }
+}
