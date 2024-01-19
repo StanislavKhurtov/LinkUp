@@ -15,8 +15,9 @@ export const Player = forwardRef(
     const [currentTrackIndex, setCurrentTrackIndex] = useState(0)
     const [isPlaying, setIsPlaying] = useState(false)
     const [addedTracks, setAddedTracks] = useState<string[]>([])
+    const [currentTime, setCurrentTime] = useState(0)
+    const [duration, setDuration] = useState(0)
     const inputRef = useRef<HTMLInputElement | null>(null)
-
 
     const togglePlayPause = () => {
       if (audioRef.current) {
@@ -140,6 +141,32 @@ export const Player = forwardRef(
       }
     }, [audioRef, ref])
 
+    useEffect(() => {
+      const handleTimeUpdate = () => {
+        if (audioRef.current) {
+          setCurrentTime(audioRef.current.currentTime)
+        }
+      }
+
+      const handleDurationChange = () => {
+        if (audioRef.current) {
+          setDuration(audioRef.current.duration)
+        }
+      }
+
+      if (audioRef.current) {
+        audioRef.current.addEventListener('timeupdate', handleTimeUpdate)
+        audioRef.current.addEventListener('loadedmetadata', handleDurationChange)
+      }
+
+      return () => {
+        if (audioRef.current) {
+          audioRef.current.removeEventListener('timeupdate', handleTimeUpdate)
+          audioRef.current.removeEventListener('loadedmetadata', handleDurationChange)
+        }
+      }
+    }, [])
+
     const dropzoneOptions: DropzoneOptions = {
       multiple: false,
       noClick: true,
@@ -152,6 +179,14 @@ export const Player = forwardRef(
     const handleTrackClick = (index: number) => {
       setCurrentTrackIndex(index)
       setIsPlaying(true)
+    }
+
+    const formatTime = (time: number) => {
+      const minutes = Math.floor(time / 60)
+      const seconds = Math.floor(time % 60)
+      const formattedTime = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`
+
+      return formattedTime
     }
 
     return (
@@ -190,6 +225,24 @@ export const Player = forwardRef(
               {track}
             </div>
           ))}
+        </div>
+        <div className={s.progress}>
+          <div>{formatTime(currentTime)}</div>
+          <div>
+            <input
+              max={duration}
+              min={0}
+              onChange={e => {
+                if (audioRef.current) {
+                  audioRef.current.currentTime = parseFloat(e.target.value)
+                }
+              }}
+              step={0.01}
+              type={'range'}
+              value={currentTime}
+            />
+          </div>
+          <div>{formatTime(duration)}</div>
         </div>
       </div>
     )
