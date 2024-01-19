@@ -1,131 +1,182 @@
-import { ChangeEvent, ForwardedRef, forwardRef, useEffect, useRef, useState } from 'react'
-
-import { Button } from '@/components/ui'
+import React, { ChangeEvent, forwardRef, useEffect, useRef, useState } from 'react';
+import { useDropzone, DropzoneOptions } from 'react-dropzone';
+import { Button } from '@/components/ui';
 
 type PlayerProps = {
-  srcList: string[]
-}
+  srcList: string[];
+};
 
 export const Player = forwardRef(
-  ({ srcList }: PlayerProps, ref: ForwardedRef<HTMLAudioElement>) => {
-    const audioRef = useRef<HTMLAudioElement | null>(null)
-    const [currentTrackIndex, setCurrentTrackIndex] = useState(0)
-    const [isPlaying, setIsPlaying] = useState(false)
+  ({ srcList }: PlayerProps, ref: React.ForwardedRef<HTMLAudioElement>) => {
+    const audioRef = useRef<HTMLAudioElement | null>(null);
+    const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
+    const [isPlaying, setIsPlaying] = useState(false);
+    const [addedTracks, setAddedTracks] = useState<string[]>([]);
+    const inputRef = useRef<HTMLInputElement | null>(null);
 
     const togglePlayPause = () => {
       if (audioRef.current) {
         if (isPlaying) {
-          audioRef.current.pause()
+          audioRef.current.pause();
         } else {
-          audioRef.current.play()
+          audioRef.current.play();
         }
-        setIsPlaying(!isPlaying)
+        setIsPlaying(!isPlaying);
       }
-    }
+    };
 
     const next = () => {
-      const nextIndex = (currentTrackIndex + 1) % srcList.length
-
-      setCurrentTrackIndex(nextIndex)
-    }
+      const nextIndex = (currentTrackIndex + 1) % srcList.length;
+      setCurrentTrackIndex(nextIndex);
+    };
 
     const prev = () => {
-      const previousIndex = (currentTrackIndex - 1 + srcList.length) % srcList.length
-
-      setCurrentTrackIndex(previousIndex)
-    }
+      const previousIndex = (currentTrackIndex - 1 + srcList.length) % srcList.length;
+      setCurrentTrackIndex(previousIndex);
+    };
 
     const stop = () => {
       if (audioRef.current) {
-        audioRef.current.pause()
-        audioRef.current.currentTime = 0
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
       }
-      setIsPlaying(false)
-    }
+      setIsPlaying(false);
+    };
 
     const setVolume = (volume: number) => {
       if (audioRef.current) {
-        audioRef.current.volume = volume
+        audioRef.current.volume = volume;
       }
-    }
+    };
 
     const handleTogglePlayPause = () => {
-      togglePlayPause()
-      setIsPlaying(!isPlaying)
-    }
+      togglePlayPause();
+    };
 
     const handleNext = () => {
-      next()
-    }
+      next();
+    };
 
     const handlePrevious = () => {
-      prev()
-    }
+      prev();
+    };
 
     const handleStop = () => {
-      stop()
-    }
+      stop();
+    };
 
     const handleVolumeChange = (event: ChangeEvent<HTMLInputElement>) => {
-      const volume = parseFloat(event.target.value)
-
-      setVolume(volume)
-    }
+      const volume = parseFloat(event.target.value);
+      setVolume(volume);
+    };
 
     const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
-      const fileList = event.target.files
-
-      if (fileList && fileList.length > 0) {
-        const file = fileList[0]
-        const fileUrl = URL.createObjectURL(file)
-
-        setCurrentTrackIndex(0)
-        setIsPlaying(false)
-        srcList.splice(0, srcList.length, fileUrl)
+      const files = event.target.files;
+      if (files && files.length > 0) {
+        const fileUrls: string[] = [];
+        for (let i = 0; i < files.length; i++) {
+          const file = files[i];
+          const fileUrl = URL.createObjectURL(file);
+          fileUrls.push(fileUrl);
+        }
+        setCurrentTrackIndex(0);
+        setIsPlaying(false);
+        const fileNames = Array.from(files).map((file) => file.name); // Извлечение названий треков
+        setAddedTracks(fileNames);
+        srcList.splice(0, srcList.length, ...fileUrls);
       }
-    }
+    };
+
+    const handleFolderDrop = (acceptedFiles: File[]) => {
+      const folderFiles: string[] = [];
+
+      acceptedFiles.forEach(async (file) => {
+        if (file.webkitRelativePath) {
+          const fileUrl = URL.createObjectURL(file);
+          folderFiles.push(fileUrl);
+        }
+      });
+
+      setCurrentTrackIndex(0);
+      setIsPlaying(false);
+      const fileNames = acceptedFiles.map((file) => file.name); // Извлечение названий треков
+      setAddedTracks(fileNames);
+      srcList.splice(0, srcList.length, ...folderFiles);
+    };
 
     useEffect(() => {
-      setCurrentTrackIndex(0)
-    }, [])
+      setCurrentTrackIndex(0);
+    }, []);
 
     useEffect(() => {
       if (audioRef.current) {
-        audioRef.current.src = srcList[currentTrackIndex]
+        audioRef.current.src = srcList[currentTrackIndex];
         if (isPlaying) {
-          audioRef.current.play()
+          audioRef.current.play();
         }
       }
-    }, [currentTrackIndex, isPlaying, srcList])
+    }, [currentTrackIndex, isPlaying, srcList]);
 
     useEffect(() => {
       if (ref) {
         if (typeof ref === 'function') {
-          ref(audioRef.current)
+          ref(audioRef.current);
         } else {
-          ref.current = audioRef.current
+          ref.current = audioRef.current;
         }
       }
-    }, [audioRef, ref])
+    }, [audioRef, ref]);
+
+    const dropzoneOptions: DropzoneOptions = {
+      onDrop: handleFolderDrop,
+      multiple: false,
+      noClick: true,
+      noKeyboard: true,
+    };
+
+    const { getRootProps, getInputProps, isDragActive } = useDropzone(dropzoneOptions);
 
     return (
       <div>
         <audio ref={audioRef} />
-        <Button onClick={handlePrevious} variant={'primary'}>
+        <Button onClick={handlePrevious} variant="primary">
           Prev
         </Button>
-        <Button onClick={handleTogglePlayPause} variant={'primary'}>
+        <Button onClick={handleTogglePlayPause} variant="primary">
           {isPlaying ? 'Pause' : 'Play'}
         </Button>
-        <Button onClick={handleNext} variant={'primary'}>
+        <Button onClick={handleNext} variant="primary">
           Next
         </Button>
-        <Button onClick={handleStop} variant={'primary'}>
+        <Button onClick={handleStop} variant="primary">
           Stop
         </Button>
-        <input max={'1'} min={'0'} onChange={handleVolumeChange} step={'0.01'} type={'range'} />
-        <input onChange={handleFileChange} type={'file'} />
+        <input type="range" min={0} max={1} step={0.01} onChange={handleVolumeChange} />
+        <input
+          type="file"
+          accept="audio/*"
+          onChange={handleFileChange}
+          multiple
+          style={{ display: 'none' }}
+          ref={inputRef}
+        />
+        <Button onClick={() => inputRef.current?.click()} variant="primary">
+          Add Music
+        </Button>
+        <div {...getRootProps()}>
+          <input {...getInputProps()} />
+          {isDragActive ? (
+            <p>Drop the music folder here...</p>
+          ) : (
+            <p>Drag and drop a music folder here, or click to select a folder</p>
+          )}
+        </div>
+        <ul>
+          {addedTracks.map((track, index) => (
+            <li key={index}>{track}</li>
+          ))}
+        </ul>
       </div>
-    )
+    );
   }
-)
+);
