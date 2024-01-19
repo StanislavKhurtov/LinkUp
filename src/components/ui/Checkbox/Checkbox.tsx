@@ -8,7 +8,7 @@ import s from './Checkbox.module.scss'
 
 import { Typography } from '../Typography'
 
-type CheckboxType = CheckboxProps & {
+export type CheckboxType = CheckboxProps & {
   checked?: CheckedState
   className?: string
   defaultChecked?: CheckedState

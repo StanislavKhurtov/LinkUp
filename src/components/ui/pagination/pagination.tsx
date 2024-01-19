@@ -2,9 +2,10 @@ import React from 'react'
 
 import KeyboardArrowLeft from '@/assets/icons/keyboard-arrow-left'
 import KeyboardArrowRight from '@/assets/icons/keyboard-arrow-right'
-import { Typography } from '@/components/ui/typography'
 
 import pgn from './pagination.module.scss'
+
+import { Typography } from '../Typography'
 
 export type PaginationPropsType = {
   onChange: (page: number) => void

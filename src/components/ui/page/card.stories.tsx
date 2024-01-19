@@ -1,5 +1,4 @@
-import { Card } from '@/components/ui/card/card'
-import { Typography } from '@/components/ui/typography'
+import { Card, Typography } from '@/components/ui'
 import { Meta, StoryObj } from '@storybook/react'
 
 const meta = {

@@ -8,10 +8,9 @@ import {
   useState,
 } from 'react'
 
-
+import { CloseOutline, Eye, EyeOff, Search } from '@/assets/icons'
 
 import s from './textField.module.scss'
-import { CloseOutline, Eye, EyeOff, Search } from "@/assets/icons";
 
 export type TextFieldProps = {
   clearText?: () => void
