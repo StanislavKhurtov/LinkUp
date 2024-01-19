@@ -3,6 +3,8 @@ import { DropzoneOptions, useDropzone } from 'react-dropzone'
 
 import { Button } from '@/components/ui'
 
+import s from './Player.module.scss'
+
 type PlayerProps = {
   srcList: string[]
 }
@@ -14,6 +16,7 @@ export const Player = forwardRef(
     const [isPlaying, setIsPlaying] = useState(false)
     const [addedTracks, setAddedTracks] = useState<string[]>([])
     const inputRef = useRef<HTMLInputElement | null>(null)
+
 
     const togglePlayPause = () => {
       if (audioRef.current) {
@@ -144,7 +147,12 @@ export const Player = forwardRef(
       onDrop: handleFolderDrop,
     }
 
-    const { getInputProps, getRootProps, isDragActive } = useDropzone(dropzoneOptions)
+    const { getInputProps, getRootProps } = useDropzone(dropzoneOptions)
+
+    const handleTrackClick = (index: number) => {
+      setCurrentTrackIndex(index)
+      setIsPlaying(true)
+    }
 
     return (
       <div>
@@ -175,17 +183,14 @@ export const Player = forwardRef(
         </Button>
         <div {...getRootProps()}>
           <input {...getInputProps()} />
-          {isDragActive ? (
-            <p>Drop the music folder here...</p>
-          ) : (
-            <p>Drag and drop a music folder here, or click to select a folder</p>
-          )}
         </div>
-        <ul>
+        <div>
           {addedTracks.map((track, index) => (
-            <li key={index}>{track}</li>
+            <div className={s.track} key={index} onClick={() => handleTrackClick(index)}>
+              {track}
+            </div>
           ))}
-        </ul>
+        </div>
       </div>
     )
   }
