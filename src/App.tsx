@@ -1,13 +1,18 @@
-import { Player } from '@/components/ui/audioPlayer/Player'
-import { Button } from '@/components/ui/button'
+import { Layout } from '@/components/ui/layout/layout'
+import { Router } from '@/router'
+
 export function App() {
   return (
-    <div>
-      <Player srcList={[]} />
+    <Layout>
+      <Router />
+    </Layout>
+  )
+}
+
+{
+  /*  <Player srcList={[]} />
       <div>Hello</div>
       <Button as={'a'} href={'http://yandex.ru'} rel={'noopener noreferrer'} target={'_blank'}>
         Link
-      </Button>
-    </div>
-  )
+      </Button>*/
 }

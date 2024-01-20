@@ -219,7 +219,7 @@ export const Player = forwardRef(
         <div {...getRootProps()}>
           <input {...getInputProps()} />
         </div>
-        <div>
+        <div className={s.playlist}>
           {addedTracks.map((track, index) => (
             <div className={s.track} key={index} onClick={() => handleTrackClick(index)}>
               {track}
