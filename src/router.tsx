@@ -7,7 +7,10 @@ import {
 } from 'react-router-dom'
 
 import { LoginPage } from '@/pages/auth/login/login'
-import { Decks1 } from '@/pages/decks/decks1'
+import { Dialogs } from '@/pages/dialogs'
+import { Music } from '@/pages/music'
+import { News } from '@/pages/news'
+import { Profile } from '@/pages/profile/profile'
 
 const publicRoutes: RouteObject[] = [
   {
@@ -18,8 +21,20 @@ const publicRoutes: RouteObject[] = [
 
 const privateRoutes: RouteObject[] = [
   {
-    element: <Decks1 />,
+    element: <Profile />,
     path: '/',
+  },
+  {
+    element: <Dialogs />,
+    path: '/message',
+  },
+  {
+    element: <Music />,
+    path: '/music',
+  },
+  {
+    element: <News />,
+    path: '/news',
   },
 ]
 
