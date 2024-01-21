@@ -34,3 +34,8 @@ export type GetDecksArgs = {
   name?: string
   orderBy?: string
 }
+
+export type CreateDeckArgs = {
+  isPrivate?: boolean
+  name: string
+}
