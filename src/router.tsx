@@ -6,6 +6,9 @@ import {
   createBrowserRouter,
 } from 'react-router-dom'
 
+import { Footer } from '@/components/ui'
+import { Header } from '@/components/ui/header/Header'
+import { Main } from '@/components/ui/main'
 import { LoginPage } from '@/pages/auth/login/login'
 import { Dialogs } from '@/pages/dialogs'
 import { Music } from '@/pages/music'
@@ -40,11 +43,28 @@ const privateRoutes: RouteObject[] = [
 
 const router = createBrowserRouter([
   {
-    children: privateRoutes,
-    element: <PrivateRoutes />,
+    children: [
+      ...publicRoutes,
+      {
+        children: privateRoutes,
+        element: <PrivateRoutes />,
+      },
+    ],
+    element: <Layout />,
   },
-  ...publicRoutes,
 ])
+
+function Layout() {
+  return (
+    <div className={'wrapper'}>
+      <Header />
+      <Main>
+        <Outlet />
+      </Main>
+      <Footer />
+    </div>
+  )
+}
 
 export const Router = () => {
   return <RouterProvider router={router} />
