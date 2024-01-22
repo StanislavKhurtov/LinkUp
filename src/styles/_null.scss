@@ -52,3 +52,18 @@ body {
   flex-direction: column;
   gap: 20px;
 }
+
+.wrapper {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  > main {
+    flex: 1 1 auto;
+  }
+
+  > * {
+    min-width: 0;
+  }
+}
