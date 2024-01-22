@@ -1,3 +1,9 @@
+import { Player } from '@/components/ui/audioPlayer/Player'
+
 export const Music = () => {
-  return <div>Music</div>
+  return (
+    <div>
+      <Player srcList={[]} />
+    </div>
+  )
 }
