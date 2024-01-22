@@ -1,21 +1,40 @@
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
+
+import s from './aside.module.scss'
 
 export const Aside = () => {
   return (
     <div>
       <nav>
-        <ul>
+        <ul className={s.aside__items}>
           <li>
-            <Link to={'/'}>Profile</Link>
+            <NavLink className={({ isActive }) => (isActive ? s.active : s.aside__link)} to={'/'}>
+              Profile
+            </NavLink>
           </li>
           <li>
-            <Link to={'/message'}>Dialogs</Link>
+            <NavLink
+              className={({ isActive }) => (isActive ? s.active : s.aside__link)}
+              to={'/message'}
+            >
+              Dialogs
+            </NavLink>
           </li>
           <li>
-            <Link to={'/music'}>Music</Link>
+            <NavLink
+              className={({ isActive }) => (isActive ? s.active : s.aside__link)}
+              to={'/music'}
+            >
+              Music
+            </NavLink>
           </li>
           <li>
-            <Link to={'/news'}>News</Link>
+            <NavLink
+              className={({ isActive }) => (isActive ? s.active : s.aside__link)}
+              to={'/news'}
+            >
+              News
+            </NavLink>
           </li>
         </ul>
       </nav>
