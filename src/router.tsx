@@ -14,6 +14,7 @@ import { Dialogs } from '@/pages/dialogs'
 import { Music } from '@/pages/music'
 import { News } from '@/pages/news'
 import { Profile } from '@/pages/profile/profile'
+import { Users } from "@/pages/users/users";
 
 const publicRoutes: RouteObject[] = [
   {
@@ -38,6 +39,10 @@ const privateRoutes: RouteObject[] = [
   {
     element: <News />,
     path: '/news',
+  },
+  {
+    element: <Users />,
+    path: '/users',
   },
 ]
 
