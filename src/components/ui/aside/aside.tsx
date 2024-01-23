@@ -9,7 +9,7 @@ export const Aside = () => {
         <ul className={s.aside__items}>
           <li>
             <NavLink className={({ isActive }) => (isActive ? s.active : s.aside__link)} to={'/'}>
-              Profile
+              My profile
             </NavLink>
           </li>
           <li>
@@ -17,7 +17,15 @@ export const Aside = () => {
               className={({ isActive }) => (isActive ? s.active : s.aside__link)}
               to={'/message'}
             >
-              Dialogs
+              Messanger
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className={({ isActive }) => (isActive ? s.active : s.aside__link)}
+              to={'/users'}
+            >
+              Friends
             </NavLink>
           </li>
           <li>
