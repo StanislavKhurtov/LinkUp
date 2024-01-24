@@ -5,31 +5,24 @@ import KeyboardArrowRight from '@/assets/icons/keyboard-arrow-right'
 
 import pgn from './pagination.module.scss'
 
-import { Typography } from '../Typography'
-
 export type PaginationPropsType = {
   onChange: (page: number) => void
   page: number
-  selectedCount: number
-  setSelectedCount: (select: number) => void
-  totalCount: number
+  totalCount?: number
 }
 
-export const Pagination: React.FC<PaginationPropsType> = ({
-  onChange,
-  page,
-  selectedCount,
-  setSelectedCount,
-  totalCount,
-}) => {
-  const lastPage = Math.ceil(totalCount / selectedCount)
-  const onChangeCallback = (targetPage: number) => onChange(targetPage)
+export const Pagination: React.FC<PaginationPropsType> = ({ onChange, page, totalCount }) => {
+  const pageSize = 10
 
-  const onChangeSelect = (event: React.ChangeEvent<{ value: unknown }>) => {
-    const count: number = Number(event.target.value)
+  if (!totalCount) {
+    return null
+  }
+  const totalPages = Math.ceil(totalCount / pageSize)
 
-    setSelectedCount(count)
-    onChange(1)
+  const onChangeCallback = (targetPage: number) => {
+    if (targetPage >= 1 && targetPage <= totalPages) {
+      onChange(targetPage)
+    }
   }
 
   const renderPageButton = (pageNumber: number) => (
@@ -42,16 +35,14 @@ export const Pagination: React.FC<PaginationPropsType> = ({
     </button>
   )
 
-  const renderEllipsis = () => <span className={pgn.pageButton}>...</span>
-
   const renderFirstPage = () => renderPageButton(1)
-  const renderLastPage = () => renderPageButton(lastPage)
+  const renderLastPage = () => renderPageButton(totalPages)
 
   const renderPagination = () => {
     const paginationItems = []
 
-    if (lastPage <= 5) {
-      for (let i = 1; i <= lastPage; i++) {
+    if (totalPages <= 5) {
+      for (let i = 1; i <= totalPages; i++) {
         paginationItems.push(renderPageButton(i))
       }
     } else {
@@ -59,21 +50,37 @@ export const Pagination: React.FC<PaginationPropsType> = ({
         for (let i = 1; i <= 5; i++) {
           paginationItems.push(renderPageButton(i))
         }
-        paginationItems.push(renderEllipsis())
+        paginationItems.push(
+          <span className={pgn.pageButton} key={'ellipsis_1'}>
+            ...
+          </span>
+        )
         paginationItems.push(renderLastPage())
-      } else if (page >= lastPage - 2) {
+      } else if (page >= totalPages - 2) {
         paginationItems.push(renderFirstPage())
-        paginationItems.push(renderEllipsis())
-        for (let i = lastPage - 3; i <= lastPage; i++) {
+        paginationItems.push(
+          <span className={pgn.pageButton} key={'ellipsis_2'}>
+            ...
+          </span>
+        )
+        for (let i = totalPages - 3; i <= totalPages; i++) {
           paginationItems.push(renderPageButton(i))
         }
       } else {
         paginationItems.push(renderFirstPage())
-        paginationItems.push(renderEllipsis())
+        paginationItems.push(
+          <span className={pgn.pageButton} key={'ellipsis_3'}>
+            ...
+          </span>
+        )
         paginationItems.push(renderPageButton(page - 1))
         paginationItems.push(renderPageButton(page))
         paginationItems.push(renderPageButton(page + 1))
-        paginationItems.push(renderEllipsis())
+        paginationItems.push(
+          <span className={pgn.pageButton} key={'ellipsis_4'}>
+            ...
+          </span>
+        )
         paginationItems.push(renderLastPage())
       }
     }
@@ -82,7 +89,7 @@ export const Pagination: React.FC<PaginationPropsType> = ({
   }
 
   const isPrevButtonDisabled = page === 1
-  const isNextButtonDisabled = page === lastPage
+  const isNextButtonDisabled = page === totalPages
 
   return (
     <div className={pgn.pagination}>
@@ -101,19 +108,6 @@ export const Pagination: React.FC<PaginationPropsType> = ({
       >
         <KeyboardArrowRight color={isNextButtonDisabled ? '#808080' : '#fff'} />
       </button>
-      <Typography as={'span'} className={pgn.text1}>
-        Показать
-      </Typography>
-      <select className={pgn.select} onChange={onChangeSelect} value={selectedCount}>
-        <option value={4}>4</option>
-        <option value={7}>7</option>
-        <option value={10}>10</option>
-        <option value={30}>30</option>
-        <option value={50}>50</option>
-      </select>
-      <Typography as={'span'} className={pgn.text2}>
-        на странице
-      </Typography>
     </div>
   )
 }
