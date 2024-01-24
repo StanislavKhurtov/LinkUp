@@ -35,14 +35,15 @@ body {
 
   font-family: var(--font-family-primary), sans-serif;
   line-height: var(--line-height-m);
-  color: var(--color-light-100);
+  color: var(--color-light-900);
+  font-size: 13px;
 
   background-color: black;
 }
 
 
 [class*='__container'] {
-  max-width: 1000px;
+  max-width: 1100px;
   width: 100%;
   margin: 0 auto;
 }
