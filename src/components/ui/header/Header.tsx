@@ -1,6 +1,4 @@
-import { Link } from 'react-router-dom'
-
-import { Button, Page } from '@/components/ui'
+import { Page } from '@/components/ui'
 
 import s from './Header.module.scss'
 
@@ -10,12 +8,12 @@ export const Header = () => {
   return (
     <Page>
       <header className={s.header}>
-        <Button as={Link} className={s.header__btn} to={'/'}>
+        <a className={s.header__btn} href={'/'}>
           <div className={s.header__logo}>
             <img alt={'image-logo'} className={s.header__image} src={logo} />
           </div>
           LinkUp
-        </Button>
+        </a>
         <button className={'header__login'}>Login</button>
       </header>
     </Page>
