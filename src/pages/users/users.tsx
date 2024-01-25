@@ -1,4 +1,4 @@
-import { NavLink, useSearchParams } from "react-router-dom";
+import { NavLink, useSearchParams } from 'react-router-dom'
 
 import { Linear, Pagination, TextField } from '@/components/ui'
 import { useGetUsersQuery } from '@/services/users/users.service'
@@ -8,21 +8,25 @@ import s from './users.module.scss'
 import noImage from '../../assets/image/noImage.jpg'
 
 export const Users = () => {
-  const [searchParams, setSearchParams] = useSearchParams({page: '1', name: ''})
+  const [searchParams, setSearchParams] = useSearchParams({ name: '', page: '1' })
   const page = Number(searchParams.get('page'))
   const name = searchParams.get('name')
-  const setPage = (page:number) => {
+  const setPage = (page: number) => {
     searchParams.set('page', page.toString())
     setSearchParams(searchParams)
   }
-  const setName = (name :string) => {
-    searchParams.set('name', name)
-    searchParams.set('page','1')
+  const setName = (name: string) => {
+    if (name === '') {
+      searchParams.delete('name')
+    } else {
+      searchParams.set('name', name)
+    }
+    searchParams.set('page', '1')
     setSearchParams(searchParams)
   }
   const { data, isLoading } = useGetUsersQuery({
     count: 10,
-    page: page,
+    page: page || 1,
     term: name ?? undefined,
   })
 
@@ -41,7 +45,12 @@ export const Users = () => {
         <button>Friends online {data?.totalCount}</button>
       </div>
       <div className={s.users__search}>
-        <TextField clearText={handleClearText} onValueChange={setName} type={'search'} value={name ?? ''} />
+        <TextField
+          clearText={handleClearText}
+          onValueChange={setName}
+          type={'search'}
+          value={name ?? ''}
+        />
       </div>
       {data?.items.map(user => (
         <div className={s.users} key={user.id}>
