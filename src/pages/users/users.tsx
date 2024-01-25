@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 
 import { Linear, Pagination, TextField } from '@/components/ui'
-import { useGetUsersQuery } from '@/services/base-api'
+import { useGetUsersQuery } from '@/services/users/users.service'
 
 import s from './users.module.scss'
 
