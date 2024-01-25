@@ -13,8 +13,10 @@ export const Main = forwardRef<ElementRef<'div'>, Props>((props, ref) => {
     <main>
       <Page>
         <div ref={ref} {...rest} className={s.main__block}>
-          <Aside />
-          {children}
+          <div className={s.main__leftBlock}>
+            <Aside />
+          </div>
+          <div className={s.main__rigthBlock}>{children}</div>
         </div>
       </Page>
     </main>

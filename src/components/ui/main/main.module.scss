@@ -1,4 +1,11 @@
 .main__block {
-  display: grid;
-  grid-template-columns: 20% 80%;
+  display: flex;
+
+}
+.main__leftBlock {
+  flex: 0 0 20%;
+}
+
+.main__rigthBlock {
+  flex: 0 0 80%;
 }
