@@ -1,13 +1,14 @@
+import { useEffect, useState } from 'react'
 import { NavLink, useSearchParams } from 'react-router-dom'
 
 import { Linear, Pagination, TextField } from '@/components/ui'
 import { useGetUsersQuery } from '@/services/users/users.service'
+import { randomUserPhoto } from '@/utils'
 
 import s from './users.module.scss'
 
-import noImage from '../../assets/image/noImage.jpg'
-
 export const Users = () => {
+  const [randomPhoto, setRandomPhoto] = useState('')
   const [searchParams, setSearchParams] = useSearchParams({ name: '', page: '1' })
   const page = Number(searchParams.get('page'))
   const name = searchParams.get('name')
@@ -29,6 +30,16 @@ export const Users = () => {
     page: page || 1,
     term: name ?? undefined,
   })
+
+  useEffect(() => {
+    const fetchRandomUserPhoto = async () => {
+      const photo = await randomUserPhoto()
+
+      setRandomPhoto(photo)
+    }
+
+    fetchRandomUserPhoto()
+  }, [])
 
   if (isLoading) {
     return <Linear />
@@ -59,7 +70,7 @@ export const Users = () => {
               <img
                 alt={'image logo'}
                 className={s.users__image}
-                src={user.photos.small !== null ? user.photos.small : noImage}
+                src={user.photos.small !== null ? user.photos.small : randomPhoto}
               />
             </NavLink>
           </div>

@@ -1,11 +1,9 @@
-
-
-import { Page } from '@/components/ui'
+import s from './profile.module.scss'
 
 export const Profile = () => {
   return (
-    <Page>
+    <div className={s.profile}>
       <div>Profile</div>
-    </Page>
+    </div>
   )
 }
