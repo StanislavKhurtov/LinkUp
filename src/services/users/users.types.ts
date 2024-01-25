@@ -5,7 +5,7 @@ export type GetUsersArgs = {
   term?: string
 }
 
-export type ResponseType = {
+export type UsersResponseType = {
   error: string
   items: UserType[]
   totalCount: number
