@@ -10,7 +10,7 @@ export const Main = forwardRef<ElementRef<'div'>, Props>((props, ref) => {
   const { children, className, ...rest } = props
 
   return (
-    <main>
+    <main className={s.main}>
       <Page>
         <div ref={ref} {...rest} className={s.main__block}>
           <div className={s.main__leftBlock}>
