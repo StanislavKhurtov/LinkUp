@@ -38,7 +38,7 @@ const profileService = baseApi.injectEndpoints({
           }
         },
       }),
-      getProfileStatusById: builder.query<any, { userId: string }>({
+      getProfileStatusById: builder.query<string, { userId: string }>({
         providesTags: ['Profile'],
         query: ({ userId }) => {
           return {
@@ -50,7 +50,7 @@ const profileService = baseApi.injectEndpoints({
   },
 })
 
-const {} = profileService
+export const { useGetProfileByIdQuery, useGetProfileStatusByIdQuery } = profileService
 
 /*
 useCreateProfileMutation,

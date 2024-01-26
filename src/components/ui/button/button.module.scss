@@ -5,6 +5,7 @@
   border-radius: 5px;
   text-align: center;
 
+
   &:focus-visible {
     outline: 2px solid var(--color-info-500);
   }
@@ -23,7 +24,12 @@
 }
 
 .link {
-  background-color: yellow;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding-left: 0;
+  padding-right: 0;
+  text-decoration: none;
 }
 
 .fullWidth {
