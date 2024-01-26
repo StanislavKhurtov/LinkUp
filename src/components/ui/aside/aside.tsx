@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom'
 
-import { Friends, Home, Message, Music, News } from "@/assets/icons";
+import { FriendsIcon, HomeIcon, MessageIcon, MusicIcon, NewsIcon } from "@/assets/icons";
 import { Button } from '@/components/ui'
 
 import s from './aside.module.scss'
@@ -25,7 +25,7 @@ export const Aside = () => {
               to={'/'}
               variant={'link'}
             >
-              <Home height={'20px'} width={'20px'} />
+              <HomeIcon height={'20px'} width={'20px'} />
               My profile
             </Button>
           </div>
@@ -36,7 +36,7 @@ export const Aside = () => {
               to={'/message'}
               variant={'link'}
             >
-              <Message height={'20px'} width={'20px'} />
+              <MessageIcon height={'20px'} width={'20px'} />
               Messanger
             </Button>
           </div>
@@ -47,7 +47,7 @@ export const Aside = () => {
               to={'/users'}
               variant={'link'}
             >
-              <Friends height={'20px'} width={'20px'} />
+              <FriendsIcon height={'20px'} width={'20px'} />
               Friends
             </Button>
           </div>
@@ -58,7 +58,7 @@ export const Aside = () => {
               to={'/music'}
               variant={'link'}
             >
-              <Music height={'20px'} width={'20px'} />
+              <MusicIcon height={'20px'} width={'20px'} />
               Music
             </Button>
           </div>
@@ -69,7 +69,7 @@ export const Aside = () => {
               to={'/news'}
               variant={'link'}
             >
-              <News height={'20px'} width={'20px'} />
+              <NewsIcon height={'20px'} width={'20px'} />
               News
             </Button>
           </div>

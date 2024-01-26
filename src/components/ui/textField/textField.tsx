@@ -8,7 +8,7 @@ import {
   useState,
 } from 'react'
 
-import { CloseOutline, Eye, EyeOff, Search } from '@/assets/icons'
+import { CloseOutline, Eye, EyeOff, SearchIcon } from '@/assets/icons'
 
 import s from './textField.module.scss'
 
@@ -97,7 +97,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
           {type === 'search' && (
             <>
               <div className={`${s.searchIcon} ${isInputFocused ? s.iconFocused : ''}`}>
-                <Search className={s.icon} />
+                <SearchIcon className={s.icon} />
               </div>
               <div className={s.crossIcon} onClick={() => (clearText ? clearText() : () => {})}>
                 {value && <CloseOutline className={s.icon} />}
