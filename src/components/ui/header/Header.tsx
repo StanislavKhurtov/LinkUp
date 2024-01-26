@@ -9,7 +9,7 @@ export const Header = () => {
   const [logout, {}] = useLogOutMutation()
 
   return (
-    <Page>
+    <Page background={'#1f1d1d'}>
       <header className={s.header}>
         <a className={s.header__btn} href={'/'}>
           <div className={s.header__logo}>
