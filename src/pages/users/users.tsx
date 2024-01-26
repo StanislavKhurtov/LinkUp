@@ -8,6 +8,7 @@ import { randomUserPhoto } from '@/utils'
 import s from './users.module.scss'
 
 export const Users = () => {
+  const [showFriendsOnly, setShowFriendsOnly] = useState(false)
   const [randomPhoto, setRandomPhoto] = useState('')
   const [searchParams, setSearchParams] = useSearchParams({ name: '', page: '1' })
   const page = Number(searchParams.get('page'))
@@ -27,6 +28,7 @@ export const Users = () => {
   }
   const { data, isLoading } = useGetUsersQuery({
     count: 10,
+    friend: showFriendsOnly ? true : undefined,
     page: page || 1,
     term: name ?? undefined,
   })
@@ -48,12 +50,19 @@ export const Users = () => {
     searchParams.set('name', '')
     setSearchParams(searchParams)
   }
+  const handleShowFriendsOnly = () => {
+    setShowFriendsOnly(true)
+  }
+
+  const handleShowAllUsers = () => {
+    setShowFriendsOnly(false)
+  }
 
   return (
     <div className={s.users__wrapper}>
       <div className={s.users__nav}>
-        <button>All users {data?.totalCount}</button>
-        <button>Friends online {data?.totalCount}</button>
+        <div onClick={handleShowAllUsers}>All users {data?.totalCount}</div>
+        <div onClick={handleShowFriendsOnly}>Friends online</div>
       </div>
       <div className={s.users__search}>
         <TextField
