@@ -14,7 +14,7 @@ import { Dialogs } from '@/pages/dialogs'
 import { Music } from '@/pages/music'
 import { News } from '@/pages/news'
 import { Profile } from '@/pages/profile/profile'
-import { Users } from "@/pages/users/users";
+import { Users } from '@/pages/users/users'
 
 const publicRoutes: RouteObject[] = [
   {
@@ -66,7 +66,6 @@ function Layout() {
       <Main>
         <Outlet />
       </Main>
-      <Footer />
     </div>
   )
 }

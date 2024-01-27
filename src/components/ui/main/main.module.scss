@@ -1,9 +1,11 @@
 .main {
   padding-top: 30px;
+  padding-bottom: 50px;
 }
 
 .main__block {
   display: flex;
+  justify-content: space-between;
   gap: 20px;
 
 }
@@ -12,5 +14,5 @@
 }
 
 .main__rigthBlock {
-  flex: 0 0 85%;
+  flex: 1  0 80%;
 }
