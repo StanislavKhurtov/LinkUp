@@ -9,12 +9,13 @@ const SvgComponent = (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGElement>) =
     xmlns={'http://www.w3.org/2000/svg'}
     {...props}
   >
-    <path d={'M8 9H4V15H8L13 19V5L8 9Z'} fill={'currentColor'} />
     <path
+      clipRule={'evenodd'}
       d={
-        'M19.9 9.60002L19.1 8.90002L16.8 11.3L14.4 8.90002L13.6 9.60002L16 12L13.6 14.4L14.4 15.1L16.8 12.7L19.1 15.1L19.9 14.4L17.5 12L19.9 9.60002Z'
+        'M7 18.9991C7 19.5519 7.37229 19.7518 7.82481 19.4501L18.1752 12.5499C18.6307 12.2462 18.6277 11.7518 18.1752 11.4501L7.82481 4.54987C7.36928 4.24619 7 4.44463 7 5.00087V18.9991Z'
       }
       fill={'currentColor'}
+      fillRule={'evenodd'}
     />
   </svg>
 )
