@@ -3,6 +3,7 @@
   flex-direction: column;
   gap: 20px;
 }
+
 .player__control {
   padding: 20px;
   display: flex;
@@ -16,7 +17,7 @@
   background: url('../../../assets/image/Waves.png') center / cover no-repeat;
 }
 
-.player__btnBlock{
+.player__btnBlock {
   display: flex;
   align-items: center;
   gap: 20px;
@@ -42,15 +43,17 @@
   justify-content: center;
   cursor: pointer;
   transition: color 0.3s;
+
   &:hover {
     color: #2a7272;
   }
 }
+
 .iconPlay {
   width: 60px;
   height: 60px;
   padding: 10px;
-  border: 2px solid  #2a7272;
+  border: 2px solid #2a7272;
   border-radius: 50%;
 }
 
@@ -58,6 +61,7 @@
   transition: color 0.3s;
   color: #2a7272;
 }
+
 .activeRotate {
   color: #2a7272;
 }
@@ -71,6 +75,11 @@
   appearance: none;
   margin: 0;
   padding: 0;
+  transition: all 0.8s;
+
+  &:hover {
+    background-color: #4bd7d7;
+  }
 
   &::-webkit-slider-thumb {
     appearance: none;
@@ -79,6 +88,10 @@
     background-color: #2a7272;
     border-radius: 50%;
     cursor: pointer;
+    transition: all 0.8s;
+    &:hover {
+      background-color: #00ffff;
+    }
   }
 
   &::-moz-range-thumb {

@@ -210,6 +210,9 @@ export const Player = forwardRef(
       toggleMute()
       setIsMuted(!isMuted)
     }
+    const handleVolMaxClick = () => {
+      setVolume(1)
+    }
     const handleVolumeRangeChange = (event: ChangeEvent<HTMLInputElement>) => {
       const rangeVolume = parseFloat(event.target.value)
 
@@ -241,7 +244,6 @@ export const Player = forwardRef(
               type={'range'}
               value={currentTime}
             />
-
             <div>{formatTime(duration)}</div>
           </div>
           <div className={s.player__btnBlock}>
@@ -290,7 +292,10 @@ export const Player = forwardRef(
               type={'range'}
               value={volume}
             />
-            <div className={`${volume === 1 ? s.activeMute : ''} ${s.icon} ${s.iconMute}`}>
+            <div
+              className={`${volume === 1 ? s.activeMute : ''} ${s.icon} ${s.iconMute}`}
+              onClick={handleVolMaxClick}
+            >
               <VolMax />
             </div>
           </div>
