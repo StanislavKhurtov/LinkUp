@@ -1,7 +1,6 @@
 import React, { ChangeEvent, forwardRef, useEffect, useRef, useState } from 'react'
-import { DropzoneOptions, useDropzone } from 'react-dropzone'
 
-import { Mute, Pause, Play, Prev, Stop } from '@/assets/icons'
+import { Mute, Pause, Play, Prev, Rotate, VolMax } from '@/assets/icons'
 import Next from '@/assets/icons/next'
 import Open from '@/assets/icons/open'
 
@@ -20,37 +19,68 @@ export const Player = forwardRef(
     const [currentTime, setCurrentTime] = useState(0)
     const [duration, setDuration] = useState(0)
     const inputRef = useRef<HTMLInputElement | null>(null)
-    const [volume, setVolume] = useState(1)
+    const [volume, setVolume] = useState(0.5)
     const [isMuted, setIsMuted] = useState(false)
+    const [isRepeat, setIsRepeat] = useState(false)
+    const [currentPlayingIndex, setCurrentPlayingIndex] = useState<null | number>(null)
+    const handleEnded = () => {
+      next()
+      setCurrentPlayingIndex(null)
+    }
+
+    useEffect(() => {
+      const handleEnded = () => {
+        next()
+      }
+
+      if (audioRef.current) {
+        audioRef.current.addEventListener('ended', handleEnded)
+      }
+
+      return () => {
+        if (audioRef.current) {
+          audioRef.current.removeEventListener('ended', handleEnded)
+        }
+      }
+    }, [currentTrackIndex])
     const togglePlayPause = () => {
       if (audioRef.current) {
         if (isPlaying) {
           audioRef.current.pause()
+          setCurrentPlayingIndex(null)
         } else {
           audioRef.current.play()
+          setCurrentPlayingIndex(currentTrackIndex)
         }
         setIsPlaying(!isPlaying)
       }
     }
-
     const next = () => {
       const nextIndex = (currentTrackIndex + 1) % srcList.length
 
-      setCurrentTrackIndex(nextIndex)
+      if (isRepeat && nextIndex === 0) {
+        stop()
+      } else {
+        setCurrentTrackIndex(nextIndex)
+        setCurrentPlayingIndex(nextIndex)
+      }
     }
 
     const prev = () => {
       const previousIndex = (currentTrackIndex - 1 + srcList.length) % srcList.length
 
       setCurrentTrackIndex(previousIndex)
+      setCurrentPlayingIndex(previousIndex)
     }
 
     const stop = () => {
       if (audioRef.current) {
         audioRef.current.pause()
         audioRef.current.currentTime = 0
+        audioRef.current.removeEventListener('ended', handleEnded)
       }
       setIsPlaying(false)
+      setCurrentPlayingIndex(null)
     }
 
     const updateVolume = (volume: number) => {
@@ -72,10 +102,6 @@ export const Player = forwardRef(
       prev()
     }
 
-    const handleStop = () => {
-      stop()
-    }
-
     const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
       const files = event.target.files
 
@@ -95,25 +121,6 @@ export const Player = forwardRef(
         setAddedTracks(fileNames)
         srcList.splice(0, srcList.length, ...fileUrls)
       }
-    }
-
-    const handleFolderDrop = (acceptedFiles: File[]) => {
-      const folderFiles: string[] = []
-
-      acceptedFiles.forEach(async file => {
-        if (file.webkitRelativePath) {
-          const fileUrl = URL.createObjectURL(file)
-
-          folderFiles.push(fileUrl)
-        }
-      })
-
-      setCurrentTrackIndex(0)
-      setIsPlaying(false)
-      const fileNames = acceptedFiles.map(file => file.name) // Извлечение названий треков
-
-      setAddedTracks(fileNames)
-      srcList.splice(0, srcList.length, ...folderFiles)
     }
 
     useEffect(() => {
@@ -165,14 +172,18 @@ export const Player = forwardRef(
       }
     }, [])
 
-    const dropzoneOptions: DropzoneOptions = {
-      multiple: false,
-      noClick: true,
-      noKeyboard: true,
-      onDrop: handleFolderDrop,
-    }
+    useEffect(() => {
+      if (audioRef.current) {
+        audioRef.current.src = srcList[currentTrackIndex]
+        if (isPlaying) {
+          audioRef.current.play()
+        }
+      }
 
-    const { getInputProps, getRootProps } = useDropzone(dropzoneOptions)
+      if (isRepeat && currentTrackIndex === 0) {
+        setIsPlaying(false)
+      }
+    }, [currentTrackIndex, isPlaying, srcList])
 
     const handleTrackClick = (index: number) => {
       setCurrentTrackIndex(index)
@@ -207,56 +218,18 @@ export const Player = forwardRef(
         setIsMuted(false)
       }
     }
+    const toggleRepeat = () => {
+      setIsRepeat(!isRepeat)
+    }
 
     return (
       <div className={s.player}>
-        <audio ref={audioRef} />
-        <button onClick={handlePrevious}>
-          <Prev className={s.icon} />
-        </button>
-        <button onClick={handleTogglePlayPause}>
-          {isPlaying ? <Pause className={s.icon} /> : <Play className={s.icon} />}
-        </button>
-        <button onClick={handleNext}>
-          <Next className={s.icon} />
-        </button>
-        <button onClick={handleStop}>
-          <Stop className={s.icon} />
-        </button>
-        <div className={s.volume}>
-          <button onClick={handleMuteClick}>
-            <Mute className={`${s.volumeButton} ${isMuted ? s.activeMute : ''} ${s.icon}`} />
-          </button>
-          <input
-            className={s.rangeVolume}
-            max={'1'}
-            min={'0'}
-            onChange={handleVolumeRangeChange}
-            step={'0.01'}
-            type={'range'}
-            value={volume}
-          />
-        </div>
-        <div className={s.open}>
-          <input
-            accept={'audio/*'}
-            multiple
-            onChange={handleFileChange}
-            ref={inputRef}
-            style={{ display: 'none' }}
-            type={'file'}
-          />
-          <button onClick={() => inputRef.current?.click()}>
-            <Open className={s.icon} />
-          </button>
-        </div>
-        <div {...getRootProps()}>
-          <input {...getInputProps()} />
-        </div>
-        <div className={s.progress}>
-          <div>{formatTime(currentTime)}</div>
-          <div>
+        <div className={s.player__control}>
+          <audio ref={audioRef} />
+          <div className={s.player__progress}>
+            <div>{formatTime(currentTime)}</div>
             <input
+              className={s.player__range}
               max={duration}
               min={0}
               onChange={e => {
@@ -268,15 +241,77 @@ export const Player = forwardRef(
               type={'range'}
               value={currentTime}
             />
+
+            <div>{formatTime(duration)}</div>
           </div>
-          <div>{formatTime(duration)}</div>
-        </div>
-        <div className={s.playlist}>
-          {addedTracks.map((track, index) => (
-            <div className={s.track} key={index} onClick={() => handleTrackClick(index)}>
-              {track}
+          <div className={s.player__btnBlock}>
+            <div onClick={toggleRepeat}>
+              <Rotate className={s.icon} />
             </div>
-          ))}
+            <div onClick={handlePrevious}>
+              <Prev className={s.icon} />
+            </div>
+            <div onClick={handleTogglePlayPause}>
+              {isPlaying ? (
+                <Pause className={`${s.icon} ${s.iconPlay}`} />
+              ) : (
+                <Play className={`${s.icon} ${s.iconPlay}`} />
+              )}
+            </div>
+            <div onClick={handleNext}>
+              <Next className={s.icon} />
+            </div>
+            <div className={s.open}>
+              <input
+                accept={'audio/*'}
+                multiple
+                onChange={handleFileChange}
+                ref={inputRef}
+                style={{ display: 'none' }}
+                type={'file'}
+              />
+              <div onClick={() => inputRef.current?.click()}>
+                <Open className={s.icon} />
+              </div>
+            </div>
+          </div>
+          <div className={s.player__volume}>
+            <div onClick={handleMuteClick}>
+              <Mute
+                className={`${s.volumeButton} ${volume === 0 || isMuted ? s.activeMute : ''} ${s.icon} ${s.iconMute}`}
+              />
+            </div>
+            <input
+              className={s.player__range}
+              max={'1'}
+              min={'0'}
+              onChange={handleVolumeRangeChange}
+              step={'0.01'}
+              type={'range'}
+              value={volume}
+            />
+            <div className={`${volume === 1 ? s.activeMute : ''} ${s.icon} ${s.iconMute}`}>
+              <VolMax />
+            </div>
+          </div>
+          <div className={s.player__text}>Bluetooth - Airpods</div>
+        </div>
+        <div className={s.player__playlist}>
+          {addedTracks.length === 0 ? (
+            <div>Добавить трек</div>
+          ) : (
+            <div className={s.player__playlist}>
+              {addedTracks.map((track, index) => (
+                <div className={s.track} key={index} onClick={() => handleTrackClick(index)}>
+                  <span
+                    className={`${s.track} ${currentPlayingIndex === index ? s.trackName : ''}`}
+                  >
+                    {track}
+                  </span>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     )
