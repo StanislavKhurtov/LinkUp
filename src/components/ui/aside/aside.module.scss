@@ -5,8 +5,12 @@
 }
 
 .aside__link {
+  transition: all 0.3s ;
 
-}
+  &:hover {
+    background-color: rgba(196,195, 195, 0.2);
+
+  }}
 
 .active {
   color: #2a7272 !important;
