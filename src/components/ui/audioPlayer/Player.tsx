@@ -1,7 +1,9 @@
 import React, { ChangeEvent, forwardRef, useEffect, useRef, useState } from 'react'
 import { DropzoneOptions, useDropzone } from 'react-dropzone'
 
-import { Button } from '@/components/ui'
+import { Mute, Pause, Play, Prev, Stop } from '@/assets/icons'
+import Next from '@/assets/icons/next'
+import Open from '@/assets/icons/open'
 
 import s from './Player.module.scss'
 
@@ -18,7 +20,8 @@ export const Player = forwardRef(
     const [currentTime, setCurrentTime] = useState(0)
     const [duration, setDuration] = useState(0)
     const inputRef = useRef<HTMLInputElement | null>(null)
-
+    const [volume, setVolume] = useState(1)
+    const [isMuted, setIsMuted] = useState(false)
     const togglePlayPause = () => {
       if (audioRef.current) {
         if (isPlaying) {
@@ -50,10 +53,11 @@ export const Player = forwardRef(
       setIsPlaying(false)
     }
 
-    const setVolume = (volume: number) => {
+    const updateVolume = (volume: number) => {
       if (audioRef.current) {
         audioRef.current.volume = volume
       }
+      setVolume(volume)
     }
 
     const handleTogglePlayPause = () => {
@@ -70,12 +74,6 @@ export const Player = forwardRef(
 
     const handleStop = () => {
       stop()
-    }
-
-    const handleVolumeChange = (event: ChangeEvent<HTMLInputElement>) => {
-      const volume = parseFloat(event.target.value)
-
-      setVolume(volume)
     }
 
     const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -188,43 +186,72 @@ export const Player = forwardRef(
 
       return formattedTime
     }
+    const toggleMute = () => {
+      if (audioRef.current) {
+        if (audioRef.current.volume === 0) {
+          updateVolume(1)
+        } else {
+          updateVolume(0)
+        }
+      }
+    }
+    const handleMuteClick = () => {
+      toggleMute()
+      setIsMuted(!isMuted)
+    }
+    const handleVolumeRangeChange = (event: ChangeEvent<HTMLInputElement>) => {
+      const rangeVolume = parseFloat(event.target.value)
+
+      updateVolume(rangeVolume)
+      if (isMuted) {
+        setIsMuted(false)
+      }
+    }
 
     return (
-      <div>
+      <div className={s.player}>
         <audio ref={audioRef} />
-        <Button onClick={handlePrevious} variant={'primary'}>
-          Prev
-        </Button>
-        <Button onClick={handleTogglePlayPause} variant={'primary'}>
-          {isPlaying ? 'Pause' : 'Play'}
-        </Button>
-        <Button onClick={handleNext} variant={'primary'}>
-          Next
-        </Button>
-        <Button onClick={handleStop} variant={'primary'}>
-          Stop
-        </Button>
-        <input max={1} min={0} onChange={handleVolumeChange} step={0.01} type={'range'} />
-        <input
-          accept={'audio/*'}
-          multiple
-          onChange={handleFileChange}
-          ref={inputRef}
-          style={{ display: 'none' }}
-          type={'file'}
-        />
-        <Button onClick={() => inputRef.current?.click()} variant={'primary'}>
-          Add Music
-        </Button>
+        <button onClick={handlePrevious}>
+          <Prev className={s.icon} />
+        </button>
+        <button onClick={handleTogglePlayPause}>
+          {isPlaying ? <Pause className={s.icon} /> : <Play className={s.icon} />}
+        </button>
+        <button onClick={handleNext}>
+          <Next className={s.icon} />
+        </button>
+        <button onClick={handleStop}>
+          <Stop className={s.icon} />
+        </button>
+        <div className={s.volume}>
+          <button onClick={handleMuteClick}>
+            <Mute className={`${s.volumeButton} ${isMuted ? s.activeMute : ''} ${s.icon}`} />
+          </button>
+          <input
+            className={s.rangeVolume}
+            max={'1'}
+            min={'0'}
+            onChange={handleVolumeRangeChange}
+            step={'0.01'}
+            type={'range'}
+            value={volume}
+          />
+        </div>
+        <div className={s.open}>
+          <input
+            accept={'audio/*'}
+            multiple
+            onChange={handleFileChange}
+            ref={inputRef}
+            style={{ display: 'none' }}
+            type={'file'}
+          />
+          <button onClick={() => inputRef.current?.click()}>
+            <Open className={s.icon} />
+          </button>
+        </div>
         <div {...getRootProps()}>
           <input {...getInputProps()} />
-        </div>
-        <div className={s.playlist}>
-          {addedTracks.map((track, index) => (
-            <div className={s.track} key={index} onClick={() => handleTrackClick(index)}>
-              {track}
-            </div>
-          ))}
         </div>
         <div className={s.progress}>
           <div>{formatTime(currentTime)}</div>
@@ -243,6 +270,13 @@ export const Player = forwardRef(
             />
           </div>
           <div>{formatTime(duration)}</div>
+        </div>
+        <div className={s.playlist}>
+          {addedTracks.map((track, index) => (
+            <div className={s.track} key={index} onClick={() => handleTrackClick(index)}>
+              {track}
+            </div>
+          ))}
         </div>
       </div>
     )
