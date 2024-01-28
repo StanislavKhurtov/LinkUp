@@ -303,9 +303,13 @@ export const Player = forwardRef(
             {formatTime(duration) !== 'Infinity:NaN' ? 'Bluetooth - Airpods' : 'Radio'}
           </div>
         </div>
-        <div className={s.player__playlist}>
+        <div className={s.player__playlistBlock}>
           {addedTracks.length === 0 ? (
-            <div>Добавить трек</div>
+            <div>
+              Upon clicking the Play button, you gain access to a wide range of radio stations for
+              your listening pleasure. If you prefer to enjoy tracks from your personal collection,
+              simply add them to your playlist by clicking on the designated option
+            </div>
           ) : (
             <div className={s.player__playlist}>
               {addedTracks.map((track, index) => (
