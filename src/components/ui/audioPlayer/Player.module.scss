@@ -125,14 +125,18 @@
   height: 26px;
 }
 
-.player__playlist {
+.player__playlistBlock {
   padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
   border: 1px solid #1f1d1d;
   border-radius: 20px;
   overflow: hidden;
+}
+
+.player__playlist {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
   //background: linear-gradient(90deg, rgb(42, 114, 114, 0.6) 1.1%, rgb(8, 30, 30,0.3) 90.1%);
   //backdrop-filter: blur(31.24287223815918px);
 }
@@ -146,4 +150,8 @@
 
 .trackName {
   color: #2a7272;
+}
+
+.player__helpInfo {
+  font-size: 11px;
 }
