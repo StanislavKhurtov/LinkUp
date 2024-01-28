@@ -244,7 +244,7 @@ export const Player = forwardRef(
               type={'range'}
               value={currentTime}
             />
-            <div>{formatTime(duration)}</div>
+            <div>{formatTime(duration) !== 'Infinity:NaN' ? formatTime(duration) : 'Radio'}</div>
           </div>
           <div className={s.player__btnBlock}>
             <div onClick={toggleRepeat}>
@@ -299,7 +299,9 @@ export const Player = forwardRef(
               <VolMax />
             </div>
           </div>
-          <div className={s.player__text}>Bluetooth - Airpods</div>
+          <div className={s.player__text}>
+            {formatTime(duration) !== 'Infinity:NaN' ? 'Bluetooth - Airpods' : 'Radio'}
+          </div>
         </div>
         <div className={s.player__playlist}>
           {addedTracks.length === 0 ? (
