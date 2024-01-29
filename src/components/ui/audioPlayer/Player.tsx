@@ -210,9 +210,6 @@ export const Player = forwardRef(
       toggleMute()
       setIsMuted(!isMuted)
     }
-    const handleVolMaxClick = () => {
-      setVolume(1)
-    }
     const handleVolumeRangeChange = (event: ChangeEvent<HTMLInputElement>) => {
       const rangeVolume = parseFloat(event.target.value)
 
@@ -294,7 +291,6 @@ export const Player = forwardRef(
             />
             <div
               className={`${volume === 1 ? s.activeMute : ''} ${s.icon} ${s.iconMute}`}
-              onClick={handleVolMaxClick}
             >
               <VolMax />
             </div>
