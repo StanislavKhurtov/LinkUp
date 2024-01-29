@@ -289,9 +289,7 @@ export const Player = forwardRef(
               type={'range'}
               value={volume}
             />
-            <div
-              className={`${volume === 1 ? s.activeMute : ''} ${s.icon} ${s.iconMute}`}
-            >
+            <div className={`${volume === 1 ? s.activeMute : ''} ${s.icon} ${s.iconMute}`}>
               <VolMax />
             </div>
           </div>
@@ -301,7 +299,7 @@ export const Player = forwardRef(
         </div>
         <div className={s.player__playlistBlock}>
           {addedTracks.length === 0 ? (
-            <div>
+            <div className={s.player__helpInfo}>
               Upon clicking the Play button, you gain access to a wide range of radio stations for
               your listening pleasure. If you prefer to enjoy tracks from your personal collection,
               simply add them to your playlist by clicking on the designated option
@@ -313,7 +311,7 @@ export const Player = forwardRef(
                   <span
                     className={`${s.track} ${currentPlayingIndex === index ? s.trackName : ''}`}
                   >
-                    {track}
+                    {`${index + 1} - ${track}`}
                   </span>
                 </div>
               ))}
