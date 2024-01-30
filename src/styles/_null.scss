@@ -19,11 +19,25 @@ a:active {
 html,
 body {
   height: 100%;
+  min-width: $minWidth + px;
 }
-
+body {
+  color: $mainColor;
+  line-height: 1;
+  font-family: $fontFamily;
+  font-size: $fontSize;
+  //text-rendering: optimizeLegibility;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: $mainBg;
+}
 input,
 button,
 textarea {
+  font-family: $fontFamily;
   font-size: inherit;
 }
 button {
@@ -58,42 +72,3 @@ h6 {
 }
 
 
-body {
-  margin: 0;
-  padding: 0;
-
-  font-family: var(--font-family-primary), sans-serif;
-  line-height: var(--line-height-m);
-  color: var(--color-light-900);
-  font-size: 13px;
-
-  background-color: black;
-}
-
-
-[class*='__container'] {
-  max-width: 1100px;
-  width: 100%;
-  margin: 0 auto;
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.wrapper {
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-
-  > main {
-    flex: 1 1 auto;
-  }
-
-  > * {
-    min-width: 0;
-  }
-}
