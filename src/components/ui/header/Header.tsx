@@ -17,6 +17,20 @@ export const Header = () => {
           </div>
           UpLink
         </a>
+        <button
+          onClick={() => {
+            const body = document.body
+            const currentTheme = body.getAttribute('data-theme')
+
+            if (currentTheme === 'light') {
+              body.setAttribute('data-theme', 'dark')
+            } else {
+              body.setAttribute('data-theme', 'light')
+            }
+          }}
+        >
+          Сменить тему
+        </button>
         <button className={'header__login'} onClick={() => logout()}>
           LogOut
         </button>
