@@ -1,0 +1,5 @@
+body[data-theme="dark"] {
+  transition: all 0.5s;
+  color: var(--color-light-100);
+  background-color: var(--color-dark-900);
+}
