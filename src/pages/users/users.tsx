@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { NavLink, useSearchParams } from 'react-router-dom'
 
 import { Linear, Pagination, TextField } from '@/components/ui'
@@ -13,6 +14,7 @@ export const Users = () => {
   const [searchParams, setSearchParams] = useSearchParams({ name: '', page: '1' })
   const page = Number(searchParams.get('page'))
   const name = searchParams.get('name')
+  const { t } = useTranslation()
   const setPage = (page: number) => {
     searchParams.set('page', page.toString())
     setSearchParams(searchParams)
@@ -59,10 +61,14 @@ export const Users = () => {
   }
 
   return (
-    <div className={s.users__wrapper}>
+    <div className={s.users__block}>
       <div className={s.users__nav}>
-        <div onClick={handleShowAllUsers}>All users {data?.totalCount}</div>
-        <div onClick={handleShowFriendsOnly}>Friends online</div>
+        <div className={s.users__allUsers} onClick={handleShowAllUsers}>
+          {t('All users')} {data?.totalCount}
+        </div>
+        <div className={s.users__online} onClick={handleShowFriendsOnly}>
+          {t('Friends online')}
+        </div>
       </div>
       <div className={s.users__search}>
         <TextField
