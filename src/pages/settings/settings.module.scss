@@ -1,0 +1,48 @@
+.settings {
+  padding: 30px 20px 20px;
+  background-color: #222222;
+  border: 1px solid #1f1d1d;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.settings__title {
+  color: #dfe1d8;
+  font-weight: 700;
+  font-size: 16px;
+  margin-bottom: 30px;
+}
+
+.settings__items {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.settings__item {
+  display: flex;
+  gap: 10px;
+  border-bottom: 1px solid #3d3d3d;
+  padding-bottom: 20px;
+}
+
+.settings__left {
+  flex: 1 0 15%;
+  color: #929292;
+}
+
+.settings__rigth {
+  flex: 1 0 83%;
+}
+
+.language__btns {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: flex-start;
+  gap: 15px;
+}
+
+.active {
+  color: #2a7272;
+}

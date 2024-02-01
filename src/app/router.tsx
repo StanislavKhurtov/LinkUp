@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import {
   Navigate,
   Outlet,
@@ -13,6 +14,7 @@ import { Dialogs } from '@/pages/dialogs'
 import { Music } from '@/pages/music'
 import { News } from '@/pages/news'
 import { Profile } from '@/pages/profile/profile'
+import { Settings } from '@/pages/settings'
 import { Users } from '@/pages/users/users'
 
 const publicRoutes: RouteObject[] = [
@@ -43,6 +45,10 @@ const privateRoutes: RouteObject[] = [
     element: <Users />,
     path: '/users',
   },
+  {
+    element: <Settings />,
+    path: '/settings',
+  },
 ]
 
 const router = createBrowserRouter([
@@ -61,10 +67,12 @@ const router = createBrowserRouter([
 function Layout() {
   return (
     <div className={'wrapper'}>
-      <Header />
-      <MainPage>
-        <Outlet />
-      </MainPage>
+      <Suspense fallback={''}>
+        <Header />
+        <MainPage>
+          <Outlet />
+        </MainPage>
+      </Suspense>
     </div>
   )
 }

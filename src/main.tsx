@@ -1,7 +1,9 @@
 import React from 'react'
+
 import { App } from '@/app/App'
 import ReactDOM from 'react-dom/client'
 
+import './shared/config/i18n/i18n'
 import './styles/_style.scss'
 import '@fontsource/roboto/400.css'
 import '@fontsource/roboto/500.css'
