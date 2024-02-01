@@ -1,21 +1,36 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+
+import { Stop } from '@/assets/icons'
+import { Button } from '@/components/ui'
 
 export const ToggleThemes = () => {
+  const [currentTheme, setCurrentTheme] = useState('') // Хранение текущей темы
+
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme')
 
     if (savedTheme) {
+      setCurrentTheme(savedTheme) // Установка текущей темы из localStorage
       document.body.setAttribute('data-theme', savedTheme)
     }
   }, [])
+
   const toggleTheme = () => {
     const body = document.body
-    const currentTheme = body.getAttribute('data-theme')
     const newTheme = currentTheme === 'light' ? 'dark' : 'light'
 
+    setCurrentTheme(newTheme) // Обновление текущей темы
     body.setAttribute('data-theme', newTheme)
     localStorage.setItem('theme', newTheme)
   }
 
-  return <button onClick={toggleTheme}>Сменить тему</button>
+  return (
+    <Button onClick={toggleTheme} variant={'link'}>
+      {currentTheme === 'light' ? (
+        <Stop className={'icon'} color={'white'} />
+      ) : (
+        <Stop className={'icon'} color={'black'} />
+      )}
+    </Button>
+  )
 }
