@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next'
+
 import { Page } from '@/components/ui'
 import { useLogOutMutation } from '@/services/auth/auth.service'
 
@@ -7,6 +9,7 @@ import logo from '../../../assets/image/logoSoc.png'
 
 export const Header = () => {
   const [logout, {}] = useLogOutMutation()
+  const { t } = useTranslation()
 
   return (
     <Page background={'#1f1d1d'}>
@@ -18,7 +21,7 @@ export const Header = () => {
           UpLink
         </a>
         <button className={'header__login'} onClick={() => logout()}>
-          LogOut
+          {t('LogOut')}
         </button>
       </header>
     </Page>
