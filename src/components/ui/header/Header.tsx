@@ -1,4 +1,5 @@
 import { Page } from '@/components/ui'
+import { ToggleThemes } from '@/components/ui/theme/toggleThemes'
 import { useLogOutMutation } from '@/services/auth/auth.service'
 
 import s from './Header.module.scss'
@@ -17,20 +18,7 @@ export const Header = () => {
           </div>
           UpLink
         </a>
-        <button
-          onClick={() => {
-            const body = document.body
-            const currentTheme = body.getAttribute('data-theme')
-
-            if (currentTheme === 'light') {
-              body.setAttribute('data-theme', 'dark')
-            } else {
-              body.setAttribute('data-theme', 'light')
-            }
-          }}
-        >
-          Сменить тему
-        </button>
+        <ToggleThemes />
         <button className={'header__login'} onClick={() => logout()}>
           LogOut
         </button>
