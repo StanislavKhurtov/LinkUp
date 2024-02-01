@@ -1,4 +1,5 @@
 import React, { ChangeEvent, forwardRef, useEffect, useRef, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import { Mute, Pause, Play, Prev, Rotate, VolMax } from '@/assets/icons'
 import Next from '@/assets/icons/next'
@@ -23,6 +24,7 @@ export const Player = forwardRef(
     const [isMuted, setIsMuted] = useState(false)
     const [isRepeat, setIsRepeat] = useState(false)
     const [currentPlayingIndex, setCurrentPlayingIndex] = useState<null | number>(null)
+    const { t } = useTranslation()
     const handleEnded = () => {
       next()
       setCurrentPlayingIndex(null)
@@ -299,11 +301,7 @@ export const Player = forwardRef(
         </div>
         <div className={s.player__playlistBlock}>
           {addedTracks.length === 0 ? (
-            <div className={s.player__helpInfo}>
-              Upon clicking the Play button, you gain access to a wide range of radio stations for
-              your listening pleasure. If you prefer to enjoy tracks from your personal collection,
-              simply add them to your playlist by clicking on the designated option
-            </div>
+            <div className={s.player__helpInfo}>{t('textPlayer')}</div>
           ) : (
             <div className={s.player__playlist}>
               {addedTracks.map((track, index) => (
