@@ -1,5 +1,4 @@
 import { Page } from '@/components/ui'
-import { ToggleThemes } from '@/components/ui/theme/toggleThemes'
 import { useLogOutMutation } from '@/services/auth/auth.service'
 
 import s from './Header.module.scss'
@@ -18,7 +17,6 @@ export const Header = () => {
           </div>
           UpLink
         </a>
-        <ToggleThemes />
         <button className={'header__login'} onClick={() => logout()}>
           LogOut
         </button>
