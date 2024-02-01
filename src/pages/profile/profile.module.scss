@@ -1,3 +1,6 @@
+@import '../../styles/style.scss';
+@import '../../styles/base/mixins.scss';
+
 .profile {
   display: flex;
   flex-direction: column;
@@ -47,7 +50,7 @@
 .top__left {
   flex: 1 0 50%;
   display: flex;
-  gap: 10px;
+  gap: 15px;
 }
 
 .top__logo {
@@ -77,6 +80,7 @@
   font-weight: 700;
   letter-spacing: 0.07vw;
   text-transform: capitalize;
+  margin-bottom: rem(20);
 }
 .top__status {
   font-size: 11px;

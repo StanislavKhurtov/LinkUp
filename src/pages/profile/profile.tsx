@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next'
+
 import { PushIcon } from '@/assets/icons'
 import { Button, TextField } from '@/components/ui'
 import {
@@ -16,6 +18,7 @@ export const Profile = () => {
   const { data: profileData } = useGetProfileByIdQuery({ userId: '29506' })
   const { data: statusData } = useGetProfileStatusByIdQuery({ userId: '29506' })
   const { data: usersData } = useGetUsersQuery({ friend: true })
+  const { t } = useTranslation()
 
   return (
     <div className={s.profile}>
@@ -38,7 +41,7 @@ export const Profile = () => {
             </div>
           </div>
           <div className={s.top__rigth}>
-            <Button variant={'primary'}>Edit profile</Button>
+            <Button variant={'primary'}>{t('Edit profile')}</Button>
           </div>
         </div>
       </div>
@@ -50,7 +53,7 @@ export const Profile = () => {
                 <div className={s.newPost__logo}>
                   <img alt={'image-post-logo-users'} className={s.newPost__foto} src={noImage} />
                 </div>
-                <TextField placeholder={'What news?'} type={'text'} />
+                <TextField placeholder={t('What news?')} type={'text'} />
               </div>
               <Button className={s.newPost__btn} variant={'primary'}>
                 <PushIcon />
@@ -111,7 +114,7 @@ export const Profile = () => {
         <div className={s.profile__rigth}>
           <div className={`${s.profile__friend} ${s.friend}`}>
             <div className={s.friend__info}>
-              <div className={s.friend__title}>Friends</div>
+              <div className={s.friend__title}>{t('Friends online')}</div>
               <div className={s.friend__count}>{usersData?.items.length}</div>
             </div>
             <div className={s.friend__body}>
