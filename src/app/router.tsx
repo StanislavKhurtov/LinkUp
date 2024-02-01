@@ -6,9 +6,8 @@ import {
   createBrowserRouter,
 } from 'react-router-dom'
 
-import { Footer } from '@/components/ui'
 import { Header } from '@/components/ui/header/Header'
-import { Main } from '@/components/ui/main'
+import { MainPage } from '@/components/ui/mainPage'
 import { LoginPage } from '@/pages/auth/login/login'
 import { Dialogs } from '@/pages/dialogs'
 import { Music } from '@/pages/music'
@@ -63,9 +62,9 @@ function Layout() {
   return (
     <div className={'wrapper'}>
       <Header />
-      <Main>
+      <MainPage>
         <Outlet />
-      </Main>
+      </MainPage>
     </div>
   )
 }

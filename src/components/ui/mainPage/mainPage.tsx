@@ -6,7 +6,7 @@ import { Aside } from '@/components/ui/aside'
 import s from './main.module.scss'
 
 type Props = ComponentPropsWithoutRef<'div'>
-export const Main = forwardRef<ElementRef<'div'>, Props>((props, ref) => {
+export const MainPage = forwardRef<ElementRef<'div'>, Props>((props, ref) => {
   const { children, className, ...rest } = props
 
   return (
