@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 
-import { Stop } from '@/assets/icons'
 import { Button } from '@/components/ui'
 
 export const ToggleThemes = () => {
@@ -26,11 +25,7 @@ export const ToggleThemes = () => {
 
   return (
     <Button onClick={toggleTheme} variant={'link'}>
-      {currentTheme === 'light' ? (
-        <Stop className={'icon'} color={'white'} />
-      ) : (
-        <Stop className={'icon'} color={'black'} />
-      )}
+      {currentTheme === 'light' ? <div>Light</div> : <div>Dark</div>}
     </Button>
   )
 }
