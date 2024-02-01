@@ -5,7 +5,6 @@ const radio = [
   'https://ice-the.musicradio.com/CapitalXTRANationalMP3',
   'https://dorognoe.hostingradio.ru:8000/dorognoe',
   'http://listen.rpfm.ru:9000/premium128',
-
 ]
 
 export const Music = () => {
