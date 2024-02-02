@@ -1,1 +1,1 @@
-export * from 'src/pages/users/users'
+export * from './users'
