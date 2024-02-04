@@ -1,55 +1,36 @@
 @use "sass:math";
-
-// Подключение миксинов
 @import "base/mixins";
 
-// Шрифт по умолчанию
 $fontFamily: Roboto;
-$fontSize: rem(13); // где 14(px) - размер шрифта по умолчанию из макета
+$fontSize: rem(13);
 $mainBg: var(--color-dark-900);
-
-// Основные цвета
-$mainColor: var(--color-light-900); // Цвет шрифта по умолчанию
-
-// НАСТРОЙКИ
+$mainColor: var(--color-light-900);
 // Минимальная ширина страницы
 $minWidth: 320;
 // Ширина полотна (макета)
 $maxWidth: 1920;
 // Ширина ограничивающего контейнера (0 = нет ограничения)
 $maxWidthContainer: 1170;
-// Общий отступ у контейнера
-// (30 = по 15px слева и справа, 0 = нет отступа)
-$containerPadding: 30;
 
-// Ширина срабатывания первого брейкпоинта
+$containerPadding: 30;
 $containerWidth: $maxWidthContainer + $containerPadding;
 
-// Брейк-поинты
-$pc: em($containerWidth); // ПК, ноутбуки, некоторые планшеты в горизонтальном положении
-$tablet: em(991.98); // Планшеты, некоторые телефоны в горизонтальном положении
-$mobile: em(767.98); // Телефоны L
-$mobileSmall: em(479.98); // Телефоны S
+$pc: em($containerWidth);
+$tablet: em(991.98);
+$mobile: em(767.98);
+$mobileSmall: em(479.98);
 
-// Тип адаптива:
-// 1 = отзывчивость (у контейнера нет брейкпоинтов),
-// 2 = по брейк-поинтам (контейнер меняет свою ширину по брейк-поинтам)
 $responsiveType: 1;
 
-// Обнуление и общие параметры
 @import "null";
 
 body {
-  // Скролл заблокирован
   .lock & {
     overflow: hidden;
     touch-action: none;
   }
-  // Сайт загружен
-  .loaded & {
-  }
 }
-// Оболочка
+
 .wrapper {
   min-height: 100%;
   display: flex;
@@ -63,13 +44,6 @@ body {
   }
 }
 // Ограничивающий контейнер
-
-/*
-(i) Стили будут применяться ко
-всем классам содержащим *__container
-Например header__container, main__container и т.д.
-Снипет (HTML): cnt
-*/
 @if ($responsiveType==1) {
   // Отзывчивая
   [class*="__container"] {
@@ -109,7 +83,6 @@ body {
   }
 }
 
-// Подключение стилей общих элементов проекта
 @import "common";
 @import "colors";
 @import "themes/dark";
