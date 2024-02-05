@@ -1,4 +1,5 @@
 import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react'
+import { Outlet } from 'react-router-dom'
 
 import { Page } from '@/components/ui'
 import { Aside } from '@/components/ui/aside'
@@ -16,7 +17,9 @@ export const MainPage = forwardRef<ElementRef<'div'>, Props>((props, ref) => {
           <div className={s.main__leftBlock}>
             <Aside />
           </div>
-          <div className={s.main__rigthBlock}>{children}</div>
+          <div className={s.main__rigthBlock}>
+            <Outlet />
+          </div>
         </div>
       </Page>
     </main>
