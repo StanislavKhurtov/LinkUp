@@ -1,4 +1,3 @@
-import { Suspense } from 'react'
 import {
   Navigate,
   Outlet,
@@ -7,8 +6,7 @@ import {
   createBrowserRouter,
 } from 'react-router-dom'
 
-import { Header } from '@/components/ui/header/Header'
-import { MainPage } from '@/components/ui/mainPage'
+import { Layout } from '@/components/ui/layout/layout'
 import { LoginPage } from '@/pages/auth/login/login'
 import { Dialogs } from '@/pages/dialogs'
 import { Music } from '@/pages/music'
@@ -64,7 +62,7 @@ const router = createBrowserRouter([
   },
 ])
 
-function Layout() {
+/*function Layout() {
   return (
     <div className={'wrapper'}>
       <Suspense fallback={''}>
@@ -72,10 +70,11 @@ function Layout() {
         <MainPage>
           <Outlet />
         </MainPage>
+        <Footer />
       </Suspense>
     </div>
   )
-}
+}*/
 
 export const Router = () => {
   return <RouterProvider router={router} />
