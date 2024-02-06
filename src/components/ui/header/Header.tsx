@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 
-import { Page } from '@/components/ui'
+import { Block } from '@/components/ui'
 import { useLogOutMutation } from '@/services/auth/auth.service'
 
 import s from './Header.module.scss'
@@ -12,8 +12,8 @@ export const Header = () => {
   const { t } = useTranslation()
 
   return (
-    <Page background={'#1f1d1d'}>
-      <header className={s.header}>
+    <Block as={'header'} className={s.header}>
+      <header className={s.header__block}>
         <a className={s.header__btn} href={'/'}>
           <div className={s.header__logo}>
             <img alt={'image-logo'} className={s.header__image} src={logo} />
@@ -24,6 +24,6 @@ export const Header = () => {
           {t('LogOut')}
         </button>
       </header>
-    </Page>
+    </Block>
   )
 }
