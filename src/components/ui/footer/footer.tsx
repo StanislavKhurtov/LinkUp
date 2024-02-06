@@ -1,11 +1,11 @@
-import { Page } from '@/components/ui'
+import { Block } from '@/components/ui'
 
 import s from './footer.module.scss'
 
 export const Footer = () => {
   return (
-    <Page>
-      <footer className={s.footer}>©2023 Stanislav khurtov</footer>
-    </Page>
+    <Block as={'footer'} className={s.footer}>
+      <div className={s.footer__text}>©2023 Stanislav khurtov</div>
+    </Block>
   )
 }
