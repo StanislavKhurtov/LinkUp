@@ -1,8 +1,9 @@
 import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react'
 import { Outlet } from 'react-router-dom'
 
-import { Page } from '@/components/ui'
+import { Block } from '@/components/ui'
 import { Aside } from '@/components/ui/aside'
+import { useMeQuery } from '@/services/auth/auth.service'
 
 import s from './main.module.scss'
 
@@ -11,17 +12,15 @@ export const MainPage = forwardRef<ElementRef<'div'>, Props>((props, ref) => {
   const { children, className, ...rest } = props
 
   return (
-    <main className={s.main}>
-      <Page>
-        <div ref={ref} {...rest} className={s.main__block}>
-          <div className={s.main__leftBlock}>
-            <Aside />
-          </div>
-          <div className={s.main__rigthBlock}>
-            <Outlet />
-          </div>
+    <Block as={'main'} className={s.main}>
+      <div ref={ref} {...rest} className={s.main__block}>
+        <div className={s.main__leftBlock}>
+          <Aside />
         </div>
-      </Page>
-    </main>
+        <div className={s.main__rigthBlock}>
+          <Outlet />
+        </div>
+      </div>
+    </Block>
   )
 })
