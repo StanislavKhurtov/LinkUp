@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react'
+import { ComponentPropsWithoutRef, ElementRef, Suspense, forwardRef } from 'react'
 
 import { Footer } from '@/components/ui/footer/footer'
 import { Header } from '@/components/ui/header/Header'
@@ -10,9 +10,11 @@ export const Layout = forwardRef<ElementRef<'div'>, Props>((props, ref) => {
 
   return (
     <div ref={ref} {...rest} className={'wrapper'}>
-      <Header />
-      <MainPage>{children}</MainPage>
-      <Footer />
+      <Suspense fallback={''}>
+        <Header />
+        <MainPage>{children}</MainPage>
+        <Footer />
+      </Suspense>
     </div>
   )
 })
