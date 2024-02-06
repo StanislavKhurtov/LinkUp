@@ -3,7 +3,6 @@ import { Outlet } from 'react-router-dom'
 
 import { Block } from '@/components/ui'
 import { Aside } from '@/components/ui/aside'
-import { useMeQuery } from '@/services/auth/auth.service'
 
 import s from './main.module.scss'
 
