@@ -1,9 +1,9 @@
-import { Page } from '@/components/ui'
+import { Block } from '@/components/ui'
 
 export const LoginPage = () => {
   return (
-    <Page>
+    <Block>
       <div>Login</div>
-    </Page>
+    </Block>
   )
 }
