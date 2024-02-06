@@ -1,7 +1,9 @@
 @import '../../../styles/style.scss';
 @import '../../../styles/base/mixins.scss';
-
 .header {
+  background-color: #222222;
+}
+.header__block {
   display: flex;
   align-items: center;
   justify-content: space-between;
