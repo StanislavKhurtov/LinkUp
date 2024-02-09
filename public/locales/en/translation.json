@@ -15,5 +15,9 @@
  "What news?": "What news?",
  "Friends online": "Friends online",
  "All users": "All users",
- "textPlayer": "Clicking the Play button gives you access to radio stations. Or add your tracks to the playlist by clicking on the appropriate option."
+ "textPlayer": "Clicking the Play button gives you access to radio stations. Or add your tracks to the playlist by clicking on the appropriate option.",
+ "Write message": "Write message",
+ "Follow": "Add friend",
+ "Unfriend": "Unfriend"
+
 }
