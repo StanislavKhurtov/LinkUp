@@ -78,6 +78,17 @@ export const Aside = () => {
           <div className={s.aside__item}>
             <Button
               as={Link}
+              className={isActive('/chat') ? activeClassName : s.aside__link}
+              to={'/chat'}
+              variant={'link'}
+            >
+              <Setting height={'20px'} width={'20px'} />
+              {t('Chat')}
+            </Button>
+          </div>
+          <div className={s.aside__item}>
+            <Button
+              as={Link}
               className={isActive('/settings') ? activeClassName : s.aside__link}
               to={'/settings'}
               variant={'link'}
