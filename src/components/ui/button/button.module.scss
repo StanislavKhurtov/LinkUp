@@ -12,7 +12,12 @@
 }
 
 .primary {
-  background-color: var(--color-danger-900);
+  transition: color 0.3s;
+  padding-left: 0;
+  padding-right: 0;
+  &:hover {
+   color: grey;
+  }
 }
 
 .secondary {
@@ -35,3 +40,4 @@
 .fullWidth {
   width: 100%;
 }
+
