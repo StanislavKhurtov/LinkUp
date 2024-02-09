@@ -8,6 +8,7 @@ import {
 
 import { Layout } from '@/components/ui/layout/layout'
 import { LoginPage } from '@/pages/auth/login/login'
+import { ChatPage } from '@/pages/chat'
 import { Dialogs } from '@/pages/dialogs'
 import { Music } from '@/pages/music'
 import { News } from '@/pages/news'
@@ -46,6 +47,14 @@ const privateRoutes: RouteObject[] = [
   {
     element: <Settings />,
     path: '/settings',
+  },
+  {
+    element: <ChatPage />,
+    path: '/chat',
+  },
+  {
+    element: <div>404 NOT FOUND</div>,
+    path: '*',
   },
 ]
 
