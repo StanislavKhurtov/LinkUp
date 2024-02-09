@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { Link, useLocation } from 'react-router-dom'
 
-import { FriendsIcon, HomeIcon, MessageIcon, MusicIcon, NewsIcon } from '@/assets/icons'
+import { FriendsIcon, HomeIcon, MessageIcon, MusicIcon, NewsIcon, Setting } from '@/assets/icons'
 import { Button } from '@/components/ui'
 
 import s from './aside.module.scss'
@@ -82,7 +82,7 @@ export const Aside = () => {
               to={'/settings'}
               variant={'link'}
             >
-              <NewsIcon height={'20px'} width={'20px'} />
+              <Setting height={'20px'} width={'20px'} />
               {t('Settings')}
             </Button>
           </div>
