@@ -5,14 +5,14 @@ import { ResponseType } from '../baseApi/baseApi.types'
 const followService = baseApi.injectEndpoints({
   endpoints: builder => {
     return {
-      follow: builder.mutation<ResponseType, { userId: string }>({
+      follow: builder.mutation<ResponseType, { userId: number }>({
         invalidatesTags: ['Follow'],
         query: ({ userId }) => ({
           method: 'POST',
           url: `follow/${userId}`,
         }),
       }),
-      getFollowUnfollow: builder.query<boolean, { userId: string }>({
+      getFollowUnfollow: builder.query<boolean, { userId: number }>({
         providesTags: ['Follow'],
         query: ({ userId }) => {
           return {
@@ -20,7 +20,7 @@ const followService = baseApi.injectEndpoints({
           }
         },
       }),
-      unfollow: builder.mutation<ResponseType, { userId: string }>({
+      unfollow: builder.mutation<ResponseType, { userId: number }>({
         invalidatesTags: ['Follow'],
         query: ({ userId }) => ({
           method: 'DELETE',
@@ -31,4 +31,4 @@ const followService = baseApi.injectEndpoints({
   },
 })
 
-const {} = followService
+export const { useFollowMutation, useGetFollowUnfollowQuery, useUnfollowMutation } = followService
