@@ -1,11 +1,17 @@
 import React, { ChangeEvent, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
 
 import { Button } from '@/components/ui'
+import {
+  sendMessages,
+  startMessagesListening,
+  stopMessagesListening,
+} from '@/pages/chat/model/chatSlice'
+import { RootState } from '@/services/store'
+import { useAppDispatch } from '@/shared/lib/useAppDispatch'
 
 import s from './chat.module.scss'
-
-const ws = new WebSocket('wss://social-network.samuraijs.com/handlers/ChatHandler.ashx')
 
 export type ChatMessageType = {
   message: string
@@ -13,33 +19,35 @@ export type ChatMessageType = {
   userId: number
   userName: string
 }
-export const ChatPage = () => {
+export const ChatPage: React.FC = () => {
   return (
-    <div>
+    <div className={s.chat}>
       <Chat />
     </div>
   )
 }
 
-export const Chat = () => {
+export const Chat: React.FC = () => {
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    dispatch(startMessagesListening())
+
+    return () => {
+      dispatch(stopMessagesListening())
+    }
+  }, [])
+
   return (
-    <div>
+    <div className={s.chat__body}>
       <Messages />
       <AddMessageForm />
     </div>
   )
 }
 
-export const Messages = () => {
-  const [messages, setMessages] = useState<ChatMessageType[]>([])
-
-  useEffect(() => {
-    ws.addEventListener('message', e => {
-      const newMessages = JSON.parse(e.data)
-
-      setMessages(prevMessages => [...prevMessages, ...newMessages])
-    })
-  }, [])
+export const Messages: React.FC = () => {
+  const messages = useSelector<RootState, ChatMessageType[]>(state => state.chat.messages)
 
   return (
     <div>
@@ -66,20 +74,21 @@ export const Message: React.FC<{ message: ChatMessageType }> = ({ message }) => 
 export const AddMessageForm: React.FC = () => {
   const { t } = useTranslation()
   const [message, setMessage] = useState('')
-
-  const onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => setMessage(e.currentTarget.value)
-  const sendMessage = () => {
+  const dispatch = useAppDispatch()
+  const handleTextareaChange = (e: ChangeEvent<HTMLTextAreaElement>) =>
+    setMessage(e.currentTarget.value)
+  const sendMessageHandler = () => {
     if (!message) {
       return
     }
-    ws.send(message)
+    dispatch(sendMessages(message))
     setMessage('')
   }
 
   return (
     <div className={s.panel}>
-      <textarea onChange={onChangeHandler} value={message}></textarea>
-      <Button onClick={sendMessage} variant={'primary'}>
+      <textarea onChange={handleTextareaChange} value={message}></textarea>
+      <Button onClick={sendMessageHandler} variant={'primary'}>
         {t('Send')}
       </Button>
     </div>

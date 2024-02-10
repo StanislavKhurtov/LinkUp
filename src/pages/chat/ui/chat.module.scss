@@ -1,6 +1,17 @@
-@import '../../styles/style.scss';
-@import '../../styles/base/mixins.scss';
+@import '../../../styles/style';
+@import '../../../styles/base/mixins';
+.chat {
+  padding: 30px 20px 20px;
+  border: 1px solid #1f1d1d;
+  border-radius: 20px;
+  overflow: hidden;
+}
 
+.chat__body {
+  display: flex;
+  flex-direction: column;
+  gap: 30px ;
+}
 
 //=================================================
 .message {
