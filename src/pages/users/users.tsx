@@ -2,7 +2,9 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { NavLink, useSearchParams } from 'react-router-dom'
 
-import { Linear, Pagination, TextField } from '@/components/ui'
+import { Mess } from '@/assets/icons'
+import { Button, Linear, Pagination, TextField } from '@/components/ui'
+import { FollowButton } from '@/pages/users/followButton'
 import { useGetUsersQuery } from '@/services/users/users.service'
 import { randomUserPhoto } from '@/utils'
 
@@ -14,6 +16,7 @@ export const Users = () => {
   const [searchParams, setSearchParams] = useSearchParams({ name: '', page: '1' })
   const page = Number(searchParams.get('page'))
   const name = searchParams.get('name')
+
   const { t } = useTranslation()
   const setPage = (page: number) => {
     searchParams.set('page', page.toString())
@@ -90,16 +93,17 @@ export const Users = () => {
             </NavLink>
           </div>
           <div className={s.users__body}>
-            <div>{user.name}</div>
-            <div>{user.status}</div>
+            <div className={s.users__info}>
+              <div className={s.users__name}>{user.name}</div>
+              <div className={s.users__status}>{user.status}</div>
+            </div>
             <div className={s.users__btns}>
-              <button>Send message</button>
+              <Button className={s.users__button} variant={'primary'}>
+                <Mess className={'icon'} />
+                {t('Write message')}
+              </Button>
               <div className={s.users__follow}>
-                {user.followed ? (
-                  <button onClick={() => {}}>Unfollow</button>
-                ) : (
-                  <button onClick={() => {}}>Follow</button>
-                )}
+                <FollowButton userId={user.id} />
               </div>
             </div>
           </div>

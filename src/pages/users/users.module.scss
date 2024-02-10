@@ -46,8 +46,24 @@
   border-radius: 50%;
 }
 
+.users__body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.users__status {
+  color: #818181;
+}
+
 .users__btns {
   display: flex;
   align-items: center;
-  gap: 40px;
+  gap: 20px;
+}
+
+.users__button {
+  display: flex;
+  align-items: center;
+  gap: 2px;
 }
