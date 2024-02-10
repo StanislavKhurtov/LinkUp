@@ -1,6 +1,7 @@
 .pagination {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 12px;
   font-size: var(--font-size-s);
   color: var(--color-light-100, #fff);
@@ -18,7 +19,7 @@
 }
 
 .pageButton {
-  padding: 0 8px;
+  padding: 3px 8px;
   line-height: var(--line-height-m);
   background: none;
   border: none;
