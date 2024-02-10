@@ -1,7 +1,15 @@
 import { useTranslation } from 'react-i18next'
 import { Link, useLocation } from 'react-router-dom'
 
-import { FriendsIcon, HomeIcon, MessageIcon, MusicIcon, NewsIcon, Setting } from '@/assets/icons'
+import {
+  Chat,
+  FriendsIcon,
+  HomeIcon,
+  MessageIcon,
+  MusicIcon,
+  NewsIcon,
+  Setting,
+} from '@/assets/icons'
 import { Button } from '@/components/ui'
 
 import s from './aside.module.scss'
@@ -82,7 +90,7 @@ export const Aside = () => {
               to={'/chat'}
               variant={'link'}
             >
-              <Setting height={'20px'} width={'20px'} />
+              <Chat height={'20px'} width={'20px'} />
               {t('Chat')}
             </Button>
           </div>
