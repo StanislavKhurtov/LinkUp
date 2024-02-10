@@ -1,3 +1,4 @@
+export { default as Chat } from './chat'
 export { default as CloseOutline } from './close-outline'
 export { default as Eye } from './eye'
 export { default as EyeOff } from './eye-off'
