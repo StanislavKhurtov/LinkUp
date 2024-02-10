@@ -8,7 +8,7 @@ import {
 
 import { Layout } from '@/components/ui/layout/layout'
 import { LoginPage } from '@/pages/auth/login/login'
-import { ChatPage } from '@/pages/chat'
+import { ChatPage } from '@/pages/chat/ui'
 import { Dialogs } from '@/pages/dialogs'
 import { Music } from '@/pages/music'
 import { News } from '@/pages/news'
@@ -70,20 +70,6 @@ const router = createBrowserRouter([
     element: <Layout />,
   },
 ])
-
-/*function Layout() {
-  return (
-    <div className={'wrapper'}>
-      <Suspense fallback={''}>
-        <Header />
-        <MainPage>
-          <Outlet />
-        </MainPage>
-        <Footer />
-      </Suspense>
-    </div>
-  )
-}*/
 
 export const Router = () => {
   return <RouterProvider router={router} />
