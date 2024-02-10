@@ -30,7 +30,7 @@ const profileService = baseApi.injectEndpoints({
           url: 'profile/status',
         }),
       }),
-      getProfileById: builder.query<ProfileType, { userId: string }>({
+      getProfileById: builder.query<ProfileType, { userId: number }>({
         providesTags: ['Profile'],
         query: ({ userId }) => {
           return {
@@ -38,7 +38,7 @@ const profileService = baseApi.injectEndpoints({
           }
         },
       }),
-      getProfileStatusById: builder.query<string, { userId: string }>({
+      getProfileStatusById: builder.query<string, { userId: number }>({
         providesTags: ['Profile'],
         query: ({ userId }) => {
           return {

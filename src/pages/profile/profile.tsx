@@ -15,8 +15,8 @@ import bg2 from '../../assets/image/bg2.jpg'
 import noImage from '../../assets/image/noImage.jpg'
 
 export const Profile = () => {
-  const { data: profileData } = useGetProfileByIdQuery({ userId: '29506' })
-  const { data: statusData } = useGetProfileStatusByIdQuery({ userId: '29506' })
+  const { data: profileData } = useGetProfileByIdQuery({ userId: 29506 })
+  const { data: statusData } = useGetProfileStatusByIdQuery({ userId: 29506 })
   const { data: usersData } = useGetUsersQuery({ friend: true })
   const { t } = useTranslation()
 
