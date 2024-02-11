@@ -2,11 +2,11 @@ import { useForm } from 'react-hook-form'
 
 import { ControlledCheckbox } from '@/components/ui/controlled/controlled-checkbox'
 import { ControlledTextField } from '@/components/ui/controlled/controlled-text-field'
+import { DevTool } from '@hookform/devtools'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
 import { Button } from '../../ui/button'
-import { DevTool } from "@hookform/devtools";
 
 const loginSchema = z.object({
   email: z.string().trim().email(),

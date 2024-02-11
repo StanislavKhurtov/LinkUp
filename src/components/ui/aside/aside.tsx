@@ -27,8 +27,8 @@ export const Aside = () => {
   return (
     <div className={s.aside}>
       <nav className={s.aside__nav}>
-        <div className={s.aside__items}>
-          <div className={s.aside__item}>
+        <ul className={s.aside__items}>
+          <li className={s.aside__item}>
             <Button
               as={Link}
               className={isActive('/') ? activeClassName : s.aside__link}
@@ -38,8 +38,8 @@ export const Aside = () => {
               <HomeIcon height={'20px'} width={'20px'} />
               {t('My profile')}
             </Button>
-          </div>
-          <div className={s.aside__item}>
+          </li>
+          <li className={s.aside__item}>
             <Button
               as={Link}
               className={isActive('/message') ? activeClassName : s.aside__link}
@@ -49,8 +49,8 @@ export const Aside = () => {
               <MessageIcon height={'20px'} width={'20px'} />
               {t('Messenger')}
             </Button>
-          </div>
-          <div className={s.aside__item}>
+          </li>
+          <li className={s.aside__item}>
             <Button
               as={Link}
               className={isActive('/users') ? activeClassName : s.aside__link}
@@ -60,8 +60,8 @@ export const Aside = () => {
               <FriendsIcon height={'20px'} width={'20px'} />
               {t('Friends')}
             </Button>
-          </div>
-          <div className={s.aside__item}>
+          </li>
+          <li className={s.aside__item}>
             <Button
               as={Link}
               className={isActive('/music') ? activeClassName : s.aside__link}
@@ -71,8 +71,8 @@ export const Aside = () => {
               <MusicIcon height={'20px'} width={'20px'} />
               {t('Music')}
             </Button>
-          </div>
-          <div className={s.aside__item}>
+          </li>
+          <li className={s.aside__item}>
             <Button
               as={Link}
               className={isActive('/news') ? activeClassName : s.aside__link}
@@ -82,8 +82,8 @@ export const Aside = () => {
               <NewsIcon height={'20px'} width={'20px'} />
               {t('News')}
             </Button>
-          </div>
-          <div className={s.aside__item}>
+          </li>
+          <li className={s.aside__item}>
             <Button
               as={Link}
               className={isActive('/chat') ? activeClassName : s.aside__link}
@@ -93,8 +93,8 @@ export const Aside = () => {
               <Chat height={'20px'} width={'20px'} />
               {t('Chat')}
             </Button>
-          </div>
-          <div className={s.aside__item}>
+          </li>
+          <li className={s.aside__item}>
             <Button
               as={Link}
               className={isActive('/settings') ? activeClassName : s.aside__link}
@@ -104,8 +104,8 @@ export const Aside = () => {
               <Setting height={'20px'} width={'20px'} />
               {t('Settings')}
             </Button>
-          </div>
-        </div>
+          </li>
+        </ul>
       </nav>
     </div>
   )
