@@ -2,7 +2,7 @@ import React, { ChangeEvent, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 
-import { Button } from '@/components/ui'
+import { Button, TextField } from '@/components/ui'
 import {
   sendMessages,
   startMessagesListening,
@@ -75,7 +75,7 @@ export const AddMessageForm: React.FC = () => {
   const { t } = useTranslation()
   const [message, setMessage] = useState('')
   const dispatch = useAppDispatch()
-  const handleTextareaChange = (e: ChangeEvent<HTMLTextAreaElement>) =>
+  const handleTextareaChange = (e: ChangeEvent<HTMLInputElement>) =>
     setMessage(e.currentTarget.value)
   const sendMessageHandler = () => {
     if (!message) {
@@ -87,7 +87,7 @@ export const AddMessageForm: React.FC = () => {
 
   return (
     <div className={s.panel}>
-      <textarea onChange={handleTextareaChange} value={message}></textarea>
+      <TextField onChange={handleTextareaChange} type={'text'} value={message}></TextField>
       <Button onClick={sendMessageHandler} variant={'primary'}>
         {t('Send')}
       </Button>
