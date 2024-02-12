@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { NavLink, useSearchParams } from 'react-router-dom'
 
@@ -6,13 +6,13 @@ import { Mess } from '@/assets/icons'
 import { Button, Linear, Pagination, TextField } from '@/components/ui'
 import { FollowButton } from '@/pages/users/followButton'
 import { useGetUsersQuery } from '@/services/users/users.service'
-import { randomUserPhoto } from '@/utils'
 
 import s from './users.module.scss'
 
+import NoImage from '../../assets/image/noImage.jpg'
+
 export const Users = () => {
   const [showFriendsOnly, setShowFriendsOnly] = useState(false)
-  const [randomPhoto, setRandomPhoto] = useState('')
   const [searchParams, setSearchParams] = useSearchParams({ name: '', page: '1' })
   const page = Number(searchParams.get('page'))
   const name = searchParams.get('name')
@@ -37,16 +37,6 @@ export const Users = () => {
     page: page || 1,
     term: name ?? undefined,
   })
-
-  useEffect(() => {
-    const fetchRandomUserPhoto = async () => {
-      const photo = await randomUserPhoto()
-
-      setRandomPhoto(photo)
-    }
-
-    fetchRandomUserPhoto()
-  }, [])
 
   if (isLoading) {
     return <Linear />
@@ -88,7 +78,7 @@ export const Users = () => {
               <img
                 alt={'image logo'}
                 className={s.users__image}
-                src={user.photos.small !== null ? user.photos.small : randomPhoto}
+                src={user.photos.small !== null ? user.photos.small : NoImage}
               />
             </NavLink>
           </div>
@@ -102,9 +92,9 @@ export const Users = () => {
                 <Mess className={'icon'} />
                 {t('Write message')}
               </Button>
-              <div className={s.users__follow}>
+              <Button className={s.users__follow} variant={'primary'}>
                 <FollowButton userId={user.id} />
-              </div>
+              </Button>
             </div>
           </div>
         </div>
