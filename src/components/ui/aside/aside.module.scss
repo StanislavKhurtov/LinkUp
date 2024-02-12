@@ -2,20 +2,17 @@
   display: flex;
   flex-direction: column;
   gap: 2px;
+  white-space: nowrap;
 }
 
 .aside__link {
-  transition: all 0.3s ;
+  transition: all 0.3s;
 
   &:hover {
-    background-color: rgba(196,195, 195, 0.2);
-
-  }}
+    background-color: rgb(196 195 195 / 20%);
+  }
+}
 
 .active {
   color: #2a7272 !important;
-}
-
-.aside__btn {
-
 }
