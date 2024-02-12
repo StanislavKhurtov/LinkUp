@@ -30,13 +30,13 @@ export const FollowButton = (props: Props) => {
 
   if (followStatus) {
     return (
-      <Button onClick={handleUnfollow} variant={'primary'}>
+      <Button disabled={unfollowLoading} onClick={handleUnfollow} variant={'primary'}>
         {t('Unfriend')}
       </Button>
     )
   } else {
     return (
-      <Button onClick={handleFollow} variant={'primary'}>
+      <Button disabled={followLoading} onClick={handleFollow} variant={'primary'}>
         {t('Follow')}
       </Button>
     )
