@@ -1,20 +1,22 @@
-@import '../../styles/style.scss';
-@import '../../styles/base/mixins.scss';
+@import '@/app/styles/style';
+@import '@/app/styles/base/mixins';
 
 .users__block {
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   gap: 30px;
+
   padding: 30px 20px 20px;
+
   border: 1px solid #1f1d1d;
   border-radius: 20px;
-  overflow: hidden;
 }
 
 .users {
   display: flex;
-  align-items: center;
   gap: 30px;
+  align-items: center;
 }
 
 .users__allUsers {
@@ -31,17 +33,19 @@
 }
 
 .users__logo {
+  position: relative;
   flex: 0 0 80px;
   height: 80px;
-  position: relative;
 }
 
 .users__image {
   position: absolute;
-  width: 100%;
-  height: 100%;
   top: 0;
   left: 0;
+
+  width: 100%;
+  height: 100%;
+
   object-fit: cover;
   border-radius: 50%;
 }
@@ -58,12 +62,12 @@
 
 .users__btns {
   display: flex;
-  align-items: center;
   gap: 20px;
+  align-items: center;
 }
 
 .users__button {
   display: flex;
-  align-items: center;
   gap: 2px;
+  align-items: center;
 }
