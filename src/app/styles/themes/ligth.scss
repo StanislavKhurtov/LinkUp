@@ -1,5 +1,5 @@
-body[data-theme="light"] {
-  transition: all 0.5s;
+body[data-theme='light'] {
   color: var(--color-dark-900);
   background-color: var(--color-light-100);
+  transition: all 0.5s;
 }
