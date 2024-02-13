@@ -1,5 +1,6 @@
-@import '../../../styles/style';
-@import '../../../styles/base/mixins';
+@import '@/app/styles/style';
+@import '@/app/styles/base/mixins';
+
 .chat {
   padding: 30px 20px 20px;
   border: 1px solid #1f1d1d;
@@ -10,10 +11,10 @@
 .chat__body {
   display: flex;
   flex-direction: column;
-  gap: 30px ;
+  gap: 30px;
 }
 
-//=================================================
+// message
 .message {
   display: flex;
   gap: 10px;
@@ -34,7 +35,7 @@
   gap: 10px;
 }
 
-//=================================================
+// panel
 
 .panel {
   display: flex;
