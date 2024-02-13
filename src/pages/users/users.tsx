@@ -84,7 +84,9 @@ export const Users = () => {
           </div>
           <div className={s.users__body}>
             <div className={s.users__info}>
-              <div className={s.users__name}>{user.name}</div>
+              <NavLink className={s.users__name} to={`/profile/${user.id}`}>
+                {user.name}
+              </NavLink>
               <div className={s.users__status}>{user.status}</div>
             </div>
             <div className={s.users__btns}>
