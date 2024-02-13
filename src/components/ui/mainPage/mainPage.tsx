@@ -2,7 +2,7 @@ import { ComponentPropsWithoutRef, ElementRef, forwardRef } from 'react'
 import { Outlet } from 'react-router-dom'
 
 import { Block } from '@/components/ui'
-import { Aside } from '@/components/ui/aside'
+import { Aside } from '@/widgets/aside'
 
 import s from './main.module.scss'
 
