@@ -1,22 +1,17 @@
 import { useTranslation } from 'react-i18next'
 import { Link, useLocation } from 'react-router-dom'
 
-import {
-  Chat,
-  FriendsIcon,
-  HomeIcon,
-  MessageIcon,
-  MusicIcon,
-  NewsIcon,
-  Setting,
-} from '@/assets/icons'
+import { Chat, FriendsIcon, HomeIcon, MessageIcon, MusicIcon, Setting } from '@/assets/icons'
 import { Button } from '@/components/ui'
+import { useMeQuery } from '@/services/auth'
 
 import s from './aside.module.scss'
 
 export const Aside = () => {
   const location = useLocation()
   const { t } = useTranslation()
+  const { data: me } = useMeQuery()
+  const userId = me?.data?.id
 
   const isActive = (path: string) => {
     return location.pathname === path
@@ -31,8 +26,8 @@ export const Aside = () => {
           <li className={s.aside__item}>
             <Button
               as={Link}
-              className={isActive('/') ? activeClassName : s.aside__link}
-              to={'/'}
+              className={isActive(`/profile/${userId}`) ? activeClassName : s.aside__link}
+              to={`/profile/${userId}`}
               variant={'link'}
             >
               <HomeIcon height={'20px'} width={'20px'} />
@@ -70,17 +65,6 @@ export const Aside = () => {
             >
               <MusicIcon height={'20px'} width={'20px'} />
               {t('Music')}
-            </Button>
-          </li>
-          <li className={s.aside__item}>
-            <Button
-              as={Link}
-              className={isActive('/news') ? activeClassName : s.aside__link}
-              to={'/news'}
-              variant={'link'}
-            >
-              <NewsIcon height={'20px'} width={'20px'} />
-              {t('News')}
             </Button>
           </li>
           <li className={s.aside__item}>
