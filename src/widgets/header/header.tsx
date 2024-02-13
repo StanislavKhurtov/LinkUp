@@ -1,11 +1,10 @@
 import { useTranslation } from 'react-i18next'
 
+import logo from '@/assets/image/logoSoc.png'
 import { Block } from '@/components/ui'
 import { useLogOutMutation } from '@/services/auth/auth.service'
 
-import s from './Header.module.scss'
-
-import logo from '../../../assets/image/logoSoc.png'
+import s from './header.module.scss'
 
 export const Header = () => {
   const [logout, {}] = useLogOutMutation()
