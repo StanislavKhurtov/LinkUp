@@ -1,0 +1,8 @@
+@import '../../app/styles/style';
+@import '../../app/styles/base/mixins';
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

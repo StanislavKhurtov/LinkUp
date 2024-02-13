@@ -1,5 +1,5 @@
-@import '../../../styles/style.scss';
-@import '../../../styles/base/mixins.scss';
+@import '../../../app/styles/style.scss';
+@import '../../../app/styles/base/mixins.scss';
 
 .player {
   display: flex;
@@ -49,7 +49,6 @@
 
   &:hover {
     color: #2a7272;
-
   }
 }
 

@@ -3,13 +3,12 @@ import { useTranslation } from 'react-i18next'
 import { NavLink, useSearchParams } from 'react-router-dom'
 
 import { Mess } from '@/assets/icons'
+import NoImage from '@/assets/image/noImage.jpg'
 import { Button, Linear, Pagination, TextField } from '@/components/ui'
-import { FollowButton } from '@/pages/users/followButton'
+import { FollowButton } from '@/pages/users/ui/followButton'
 import { useGetUsersQuery } from '@/services/users/users.service'
 
 import s from './users.module.scss'
-
-import NoImage from '../../assets/image/noImage.jpg'
 
 export const Users = () => {
   const [showFriendsOnly, setShowFriendsOnly] = useState(false)

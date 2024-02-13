@@ -1,6 +1,10 @@
 import { useTranslation } from 'react-i18next'
+import { NavLink, useParams } from 'react-router-dom'
 
 import { PushIcon } from '@/assets/icons'
+import bg from '@/assets/image/bg.jpg'
+import bg2 from '@/assets/image/bg2.jpg'
+import noImage from '@/assets/image/noImage.jpg'
 import { Button, TextField } from '@/components/ui'
 import {
   useGetProfileByIdQuery,
@@ -10,30 +14,29 @@ import { useGetUsersQuery } from '@/services/users'
 
 import s from './profile.module.scss'
 
-import bg from '../../assets/image/bg.jpg'
-import bg2 from '../../assets/image/bg2.jpg'
-import noImage from '../../assets/image/noImage.jpg'
-
 export const Profile = () => {
-  const { data: profileData } = useGetProfileByIdQuery({ userId: 29506 })
-  const { data: statusData } = useGetProfileStatusByIdQuery({ userId: 29506 })
+  const { userId } = useParams()
+
+  const { data: profileData } = useGetProfileByIdQuery({ userId: Number(userId) })
+  const { data: statusData } = useGetProfileStatusByIdQuery({ userId: Number(userId) })
   const { data: usersData } = useGetUsersQuery({ friend: true })
   const { t } = useTranslation()
+  const foto = profileData?.photos.small !== null ? profileData?.photos.small : noImage
 
   return (
     <div className={s.profile}>
       <div className={`${s.profile__top} ${s.top}`}>
         <div className={s.top__bg}>
-          <img alt={'image-bg'} className={s.top__image} src={bg} />
+          <img
+            alt={'image-bg'}
+            className={s.top__image}
+            src={profileData?.photos.large !== null ? profileData?.photos.large : bg}
+          />
         </div>
         <div className={s.top__body}>
           <div className={s.top__left}>
             <div className={s.top__logo}>
-              <img
-                alt={'image-profile'}
-                className={s.top__foto}
-                src={profileData?.photos.small !== null ? profileData?.photos.small : noImage}
-              />
+              <img alt={'image-profile'} className={s.top__foto} src={foto} />
             </div>
             <div className={s.top__info}>
               <div className={s.top__title}>{profileData?.fullName}</div>
@@ -51,7 +54,7 @@ export const Profile = () => {
             <div className={`${s.post__newPost} ${s.newPost}`}>
               <div className={s.newPost__body}>
                 <div className={s.newPost__logo}>
-                  <img alt={'image-post-logo-users'} className={s.newPost__foto} src={noImage} />
+                  <img alt={'image-post-logo-users'} className={s.newPost__foto} src={foto} />
                 </div>
                 <TextField placeholder={t('What news?')} type={'text'} />
               </div>
@@ -67,7 +70,7 @@ export const Profile = () => {
                       <img
                         alt={'image-post-logo-users'}
                         className={s.contentPost__foto}
-                        src={noImage}
+                        src={foto}
                       />
                     </div>
                     <div className={s.contentPost__info}>
@@ -91,7 +94,7 @@ export const Profile = () => {
                       <img
                         alt={'image-post-logo-users'}
                         className={s.contentPost__foto}
-                        src={noImage}
+                        src={foto}
                       />
                     </div>
                     <div className={s.contentPost__info}>
@@ -119,16 +122,18 @@ export const Profile = () => {
             </div>
             <div className={s.friend__body}>
               {usersData?.items.map(user => (
-                <div className={s.friend__item} key={user.id}>
-                  <div className={s.friend__logo}>
-                    <img
-                      alt={'image-profile-friend'}
-                      className={s.friend__foto}
-                      src={user?.photos?.small !== null ? user?.photos?.small : noImage}
-                    />
+                <NavLink className={s.users__name} key={user.id} to={`/profile/${user.id}`}>
+                  <div className={s.friend__item}>
+                    <div className={s.friend__logo}>
+                      <img
+                        alt={'image-profile-friend'}
+                        className={s.friend__foto}
+                        src={user?.photos?.small !== null ? user?.photos?.small : noImage}
+                      />
+                    </div>
+                    <div className={s.friend__name}>{user?.name}</div>
                   </div>
-                  <div className={s.friend__name}>{user?.name}</div>
-                </div>
+                </NavLink>
               ))}
             </div>
           </div>

@@ -6,15 +6,15 @@ import {
   createBrowserRouter,
 } from 'react-router-dom'
 
-import { Layout } from '@/components/ui/layout/layout'
-import { LoginPage } from '@/pages/auth/login/login'
+import { LoginPage } from '@/pages/auth/ui/login/login'
 import { ChatPage } from '@/pages/chat/ui'
-import { Dialogs } from '@/pages/dialogs'
-import { Music } from '@/pages/music'
-import { News } from '@/pages/news'
-import { Profile } from '@/pages/profile/profile'
-import { Settings } from '@/pages/settings'
-import { Users } from '@/pages/users/users'
+import { Dialogs } from '@/pages/dialogs/ui'
+import { Music } from '@/pages/music/ui'
+import { News } from '@/pages/news/ui'
+import { Profile } from '@/pages/profile/ui'
+import { Settings } from '@/pages/settings/ui'
+import { Users } from '@/pages/users/ui'
+import { Layout } from '@/widgets/layout/layout'
 
 const publicRoutes: RouteObject[] = [
   {

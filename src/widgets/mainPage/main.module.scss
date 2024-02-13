@@ -1,19 +1,21 @@
+@import '@/app/styles/style';
+@import '@/app/styles/base/mixins';
+
 .main {
   padding-top: 30px;
   padding-bottom: 50px;
-
 }
 
 .main__block {
   display: flex;
-  justify-content: space-between;
   gap: 20px;
-
+  justify-content: space-between;
 }
+
 .main__leftBlock {
   flex: 0 0 15%;
 }
 
 .main__rigthBlock {
-  flex: 1  0 80%;
+  flex: 1 0 80%;
 }
