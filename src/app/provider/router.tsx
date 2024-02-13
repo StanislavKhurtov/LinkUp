@@ -26,7 +26,7 @@ const publicRoutes: RouteObject[] = [
 const privateRoutes: RouteObject[] = [
   {
     element: <Profile />,
-    path: '/',
+    path: '/profile/:userId',
   },
   {
     element: <Dialogs />,
@@ -38,7 +38,7 @@ const privateRoutes: RouteObject[] = [
   },
   {
     element: <News />,
-    path: '/news',
+    path: '/',
   },
   {
     element: <Users />,
