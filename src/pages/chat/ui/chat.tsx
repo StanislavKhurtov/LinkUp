@@ -2,13 +2,13 @@ import React, { ChangeEvent, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 
+import { RootState } from '@/app/store'
 import { Button, TextField } from '@/components/ui'
 import {
   sendMessages,
   startMessagesListening,
   stopMessagesListening,
 } from '@/pages/chat/model/chatSlice'
-import { RootState } from '@/services/store'
 import { useAppDispatch } from '@/shared/lib/useAppDispatch'
 
 import s from './chat.module.scss'
