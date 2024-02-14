@@ -1,11 +1,8 @@
 import { useTranslation } from 'react-i18next'
 
 import { Button, Linear } from '@/components/ui'
-import {
-  useFollowMutation,
-  useGetFollowUnfollowQuery,
-  useUnfollowMutation,
-} from '@/services/follow'
+
+import { useFollowMutation, useGetFollowUnfollowQuery, useUnfollowMutation } from '../api/follow'
 type Props = {
   userId: number
 }

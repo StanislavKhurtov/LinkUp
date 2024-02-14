@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next'
 
 import logo from '@/assets/image/logoSoc.png'
 import { Block } from '@/components/ui'
-import { useLogOutMutation } from '@/services/auth/auth.service'
+import { useLogOutMutation } from '@/pages/auth/api/auth.service'
 
 import s from './header.module.scss'
 

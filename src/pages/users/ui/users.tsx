@@ -5,8 +5,8 @@ import { NavLink, useSearchParams } from 'react-router-dom'
 import { Mess } from '@/assets/icons'
 import NoImage from '@/assets/image/noImage.jpg'
 import { Button, Linear, Pagination, TextField } from '@/components/ui'
+import { useGetUsersQuery } from '@/pages/users/api/users/users.service'
 import { FollowButton } from '@/pages/users/ui/followButton'
-import { useGetUsersQuery } from '@/services/users/users.service'
 
 import s from './users.module.scss'
 

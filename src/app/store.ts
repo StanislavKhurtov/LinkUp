@@ -1,5 +1,5 @@
+import { baseApi } from '@/app/services/baseApi'
 import { chatReducer } from '@/pages/chat/model/chatSlice'
-import { baseApi } from '@/services/baseApi/base-api'
 import { configureStore } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/query'
 

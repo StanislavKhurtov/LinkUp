@@ -9,10 +9,11 @@ import { Button, TextField } from '@/components/ui'
 import {
   useGetProfileByIdQuery,
   useGetProfileStatusByIdQuery,
-} from '@/services/profile/profile.service'
-import { useGetUsersQuery } from '@/services/users'
+} from '@/pages/profile/api/profile.service'
 
 import s from './profile.module.scss'
+
+import { useGetUsersQuery } from '../../users/api/users'
 
 export const Profile = () => {
   const { userId } = useParams()

@@ -1,5 +1,5 @@
-import { baseApi } from '@/services/baseApi/base-api'
-import { GetUsersArgs, UsersResponseType } from '@/services/users/users.types'
+import { baseApi } from '@/app/services/baseApi'
+import { GetUsersArgs, UsersResponseType } from '@/pages/users/api/users/users.types'
 
 const usersService = baseApi.injectEndpoints({
   endpoints: builder => {

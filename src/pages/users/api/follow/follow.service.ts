@@ -1,6 +1,5 @@
-import { baseApi } from '@/services/baseApi'
-
-import { ResponseType } from '../baseApi/baseApi.types'
+import { baseApi } from '@/app/services/baseApi'
+import { ResponseType } from '@/app/services/baseApi/baseApi.types'
 
 const followService = baseApi.injectEndpoints({
   endpoints: builder => {

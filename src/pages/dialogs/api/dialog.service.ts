@@ -1,9 +1,8 @@
+import { CreateProfileArgs, ProfileType } from '@/pages/profile/api/profile.types'
 import { baseApi } from '@/services/baseApi'
-import { CreateProfileArgs, ProfileType } from '@/services/profile/profile.types'
+import { ResponseType } from 'src/services/baseApi/baseApi.types'
 
-import { ResponseType } from '../baseApi/baseApi.types'
-
-const profileService = baseApi.injectEndpoints({
+const dialogService = baseApi.injectEndpoints({
   endpoints: builder => {
     return {
       createProfile: builder.mutation<ResponseType, CreateProfileArgs>({
@@ -50,7 +49,7 @@ const profileService = baseApi.injectEndpoints({
   },
 })
 
-export const { useGetProfileByIdQuery, useGetProfileStatusByIdQuery } = profileService
+export const { useGetProfileByIdQuery, useGetProfileStatusByIdQuery } = dialogService
 
 /*
 useCreateProfileMutation,

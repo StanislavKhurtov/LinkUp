@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom'
 
 import { Chat, FriendsIcon, HomeIcon, MessageIcon, MusicIcon, Setting } from '@/assets/icons'
 import { Button } from '@/components/ui'
-import { useMeQuery } from '@/services/auth'
+import { useMeQuery } from '@/pages/auth/api'
 
 import s from './aside.module.scss'
 
