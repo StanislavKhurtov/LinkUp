@@ -1,91 +1,121 @@
-@use "sass:math";
-@import "base/mixins";
+@use 'sass:math';
 
-$fontFamily: Roboto;
+@import 'base/mixins';
+
+$fontFamily: roboto;
 $fontSize: rem(13);
 $mainBg: var(--color-dark-900);
 $mainColor: var(--color-light-900);
+
 // Минимальная ширина страницы
 $minWidth: 320;
+
 // Ширина полотна (макета)
 $maxWidth: 1920;
+
 // Ширина ограничивающего контейнера (0 = нет ограничения)
 $maxWidthContainer: 1170;
-
 $containerPadding: 30;
 $containerWidth: $maxWidthContainer + $containerPadding;
-
 $pc: em($containerWidth);
 $tablet: em(991.98);
 $mobile: em(767.98);
 $mobileSmall: em(479.98);
-
 $responsiveType: 1;
 
-@import "null";
+@import 'null';
 
 body {
   .lock & {
-    overflow: hidden;
     touch-action: none;
+    overflow: hidden;
   }
 }
 
 .wrapper {
-  min-height: 100svh;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  min-height: 100svh;
+
   > main {
     flex: 1 1 auto;
   }
+
   > * {
     min-width: 0;
   }
 }
+
 // Ограничивающий контейнер
-@if ($responsiveType==1) {
+@if $responsiveType==1 {
   // Отзывчивая
-  [class*="__container"] {
-    @if ($maxWidthContainer>0) {
+  [class*='__container'] {
+    @if $maxWidthContainer>0 {
       max-width: rem($maxWidthContainer);
       box-sizing: content-box;
       margin: 0 auto;
     }
-    @if ($containerPadding>0) {
+
+    @if $containerPadding>0 {
       padding: 0 rem(math.div($containerPadding, 2));
     }
   }
 } @else {
   // По брейк-поинтам
-  [class*="__container"] {
+  [class*='__container'] {
     margin: 0 auto;
-    @if ($maxWidthContainer>0) {
+
+    @if $maxWidthContainer>0 {
       max-width: rem($maxWidthContainer);
       box-sizing: content-box;
     } @else {
-      @if ($containerPadding>0) {
+      @if $containerPadding>0 {
         padding: 0 rem(math.div($containerPadding, 2));
       }
     }
+
     @media (max-width: $pc) {
       max-width: rem(970);
     }
+
     @media (max-width: $tablet) {
       max-width: rem(750);
     }
+
     @media (max-width: $mobile) {
       max-width: none;
-      @if ($containerPadding>0 and $maxWidthContainer>0) {
+
+      @if $containerPadding>0 and $maxWidthContainer>0 {
         padding: 0 rem(math.div($containerPadding, 2));
       }
     }
   }
 }
 
-@import "common";
-@import "colors";
-@import "themes/dark";
-@import "themes/ligth";
+// Стили для отзывчивых картинок (IBG)
+[class*='_ibg'] {
+  position: relative;
 
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
 
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+  }
+}
+
+[class*='-ibg_contain'] {
+  img {
+    object-fit: contain;
+  }
+}
+
+@import 'common';
+@import 'colors';
+@import 'themes/dark';
+@import 'themes/ligth';
