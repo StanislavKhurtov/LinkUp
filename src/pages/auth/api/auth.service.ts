@@ -16,9 +16,9 @@ const authService = baseApi.injectEndpoints({
       }),
       login: builder.mutation<ResponseType<{ userId: number }>, LoginArgs>({
         invalidatesTags: ['Auth'],
-        query: args => {
+        query: body => {
           return {
-            body: args,
+            body,
             method: 'POST',
             url: 'auth/login',
           }
@@ -36,4 +36,4 @@ const authService = baseApi.injectEndpoints({
   },
 })
 
-export const { useLogOutMutation, useMeQuery } = authService
+export const { useLogOutMutation, useLoginMutation, useMeQuery } = authService

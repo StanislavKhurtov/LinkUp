@@ -1,1 +1,1 @@
-export * from 'src/services/profile/profile.service'
+export * from './profile.service'

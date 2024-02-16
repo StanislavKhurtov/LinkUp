@@ -1,10 +1,13 @@
 .button {
   all: unset;
+
   cursor: pointer;
+
   padding: 5px 10px;
-  border-radius: 5px;
+
   text-align: center;
 
+  border-radius: 5px;
 
   &:focus-visible {
     outline: 2px solid var(--color-info-500);
@@ -12,16 +15,29 @@
 }
 
 .primary {
-  transition: color 0.3s;
-  padding-left: 0;
   padding-right: 0;
+  padding-left: 0;
+  transition: color 0.3s;
+
   &:hover {
-   color: grey;
+    color: grey;
   }
 }
 
 .secondary {
-  background-color: green;
+  padding: 10px 0;
+
+  font-weight: 500;
+  color: #726a6a;
+
+  background-color: #fdfdfd;
+  border-radius: 10px;
+
+  transition: color 0.3s;
+
+  &:hover {
+    color: grey;
+  }
 }
 
 .tertiary {
@@ -30,14 +46,15 @@
 
 .link {
   display: flex;
-  align-items: center;
   gap: 5px;
-  padding-left: 0;
+  align-items: center;
+
   padding-right: 0;
+  padding-left: 0;
+
   text-decoration: none;
 }
 
 .fullWidth {
   width: 100%;
 }
-

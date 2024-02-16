@@ -6,6 +6,8 @@ import {
   createBrowserRouter,
 } from 'react-router-dom'
 
+import { Linear } from '@/components/ui'
+import { useMeQuery } from '@/pages/auth/api'
 import { LoginPage } from '@/pages/auth/ui/login/login'
 import { ChatPage } from '@/pages/chat/ui'
 import { Dialogs } from '@/pages/dialogs/ui'
@@ -76,7 +78,12 @@ export const Router = () => {
 }
 
 function PrivateRoutes() {
-  const isAuthenticated = true
+  const { isError, isLoading } = useMeQuery()
+  const isAuthenticated = !isError
+
+  if (isLoading) {
+    return <Linear />
+  }
 
   return isAuthenticated ? <Outlet /> : <Navigate to={'/login'} />
 }

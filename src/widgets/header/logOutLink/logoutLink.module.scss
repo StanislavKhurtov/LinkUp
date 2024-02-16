@@ -1,0 +1,12 @@
+@import '@/app/styles/style';
+@import '@/app/styles/base/mixins';
+
+.header__login {
+  @include adaptiveValue('font-size', 14, 10, 700, 360, 1);
+
+  transition: all 0.3s ease 0s;
+
+  &:hover {
+    color: #2a7272;
+  }
+}

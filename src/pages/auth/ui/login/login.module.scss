@@ -1,0 +1,23 @@
+@import '@/app/styles/style';
+@import '@/app/styles/base/mixins';
+
+.auth {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: space-between;
+
+  height: 100%;
+}
+
+.auth__bg_ibg {
+  flex: 0 0 45%;
+  padding-bottom: 48%;
+}
+
+.auth__form {
+  display: flex;
+  flex: 0 0 45%;
+  flex-direction: column;
+  gap: 20px;
+}

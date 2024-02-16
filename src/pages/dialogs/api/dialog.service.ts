@@ -1,6 +1,6 @@
+import { baseApi } from '@/app/services/baseApi'
+import { ResponseType } from '@/app/services/baseApi/baseApi.types'
 import { CreateProfileArgs, ProfileType } from '@/pages/profile/api/profile.types'
-import { baseApi } from '@/services/baseApi'
-import { ResponseType } from 'src/services/baseApi/baseApi.types'
 
 const dialogService = baseApi.injectEndpoints({
   endpoints: builder => {

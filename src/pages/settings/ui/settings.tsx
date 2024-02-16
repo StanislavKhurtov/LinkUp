@@ -14,6 +14,9 @@ export const Settings = () => {
   const handleClickRU = () => {
     i18n.changeLanguage('ru')
   }
+  const handleClickFR = () => {
+    i18n.changeLanguage('fr')
+  }
 
   return (
     <div className={s.settings}>
@@ -38,6 +41,9 @@ export const Settings = () => {
               </button>
               <button className={currentLanguage === 'ru' ? s.active : ''} onClick={handleClickRU}>
                 Русский
+              </button>
+              <button className={currentLanguage === 'fr' ? s.active : ''} onClick={handleClickFR}>
+                Français
               </button>
             </div>
           </div>

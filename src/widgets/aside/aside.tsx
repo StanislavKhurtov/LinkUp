@@ -30,7 +30,7 @@ export const Aside = () => {
               to={`/profile/${userId}`}
               variant={'link'}
             >
-              <HomeIcon height={'20px'} width={'20px'} />
+              <HomeIcon height={'24px'} width={'24px'} />
               {t('My profile')}
             </Button>
           </li>
@@ -41,7 +41,7 @@ export const Aside = () => {
               to={'/message'}
               variant={'link'}
             >
-              <MessageIcon height={'20px'} width={'20px'} />
+              <MessageIcon height={'24px'} width={'24px'} />
               {t('Messenger')}
             </Button>
           </li>
@@ -52,7 +52,7 @@ export const Aside = () => {
               to={'/users'}
               variant={'link'}
             >
-              <FriendsIcon height={'20px'} width={'20px'} />
+              <FriendsIcon height={'24px'} width={'24px'} />
               {t('Friends')}
             </Button>
           </li>
@@ -63,7 +63,7 @@ export const Aside = () => {
               to={'/music'}
               variant={'link'}
             >
-              <MusicIcon height={'20px'} width={'20px'} />
+              <MusicIcon height={'24px'} width={'24px'} />
               {t('Music')}
             </Button>
           </li>
@@ -74,7 +74,7 @@ export const Aside = () => {
               to={'/chat'}
               variant={'link'}
             >
-              <Chat height={'20px'} width={'20px'} />
+              <Chat height={'24px'} width={'24px'} />
               {t('Chat')}
             </Button>
           </li>
@@ -85,7 +85,7 @@ export const Aside = () => {
               to={'/settings'}
               variant={'link'}
             >
-              <Setting height={'20px'} width={'20px'} />
+              <Setting height={'24px'} width={'24px'} />
               {t('Settings')}
             </Button>
           </li>

@@ -1,5 +1,5 @@
-@import '@/app/styles/style.scss';
-@import '@/app/styles/base/mixins.scss';
+@import '@/app/styles/style';
+@import '@/app/styles/base/mixins';
 
 .profile {
   display: flex;
@@ -22,68 +22,74 @@
 }
 
 .top {
+  overflow: hidden;
   border: 1px solid #1f1d1d;
   border-radius: 20px;
-  overflow: hidden;
 }
 
 .top__bg {
-  padding-bottom: 30%;
   position: relative;
+  padding-bottom: 30%;
 }
 
 .top__image {
   position: absolute;
-  width: 100%;
-  height: 100%;
   top: 0;
   left: 0;
+
+  width: 100%;
+  height: 100%;
+
   object-fit: cover;
 }
 
 .top__body {
-  padding: 20px;
   display: flex;
+  gap: 10px;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
+
+  padding: 20px;
 }
 
 .top__left {
-  flex: 1 0 50%;
   display: flex;
+  flex: 1 0 50%;
   gap: 15px;
 }
 
 .top__logo {
+  position: relative;
   width: 80px;
   height: 80px;
-  position: relative;
 }
 
 .top__foto {
   position: absolute;
-  width: 100%;
-  height: 100%;
   top: 0;
   left: 0;
+
+  width: 100%;
+  height: 100%;
+
   object-fit: cover;
   border-radius: 50%;
 }
 
 .top__rigth {
-  flex: 1 0 50%;
   display: flex;
-  justify-content: flex-end;
+  flex: 1 0 50%;
   gap: 10px;
+  justify-content: flex-end;
 }
 
 .top__title {
+  margin-bottom: rem(20);
+
   font-size: 16px;
   font-weight: 700;
-  letter-spacing: 0.07vw;
   text-transform: capitalize;
-  margin-bottom: rem(20);
+  letter-spacing: 0.07vw;
 }
 
 .top__status {
@@ -92,19 +98,21 @@
 
 .blog {
   display: flex;
-  justify-content: space-between;
-  gap: 10px;
   flex-wrap: wrap;
+  gap: 10px;
+  justify-content: space-between;
 }
 
 .friend {
-  padding: 20px;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   gap: 20px;
+
+  padding: 20px;
+
   border: 1px solid #1f1d1d;
   border-radius: 20px;
-  overflow: hidden;
 }
 
 .friend__info {
@@ -113,17 +121,19 @@
 }
 
 .friend__logo {
+  position: relative;
   width: 60px;
   height: 60px;
-  position: relative;
 }
 
 .friend__foto {
   position: absolute;
-  width: 100%;
-  height: 100%;
   top: 0;
   left: 0;
+
+  width: 100%;
+  height: 100%;
+
   object-fit: cover;
   border-radius: 50%;
 }
@@ -131,14 +141,14 @@
 .friend__body {
   display: flex;
   flex-wrap: wrap;
+  gap: 10px;
   align-items: center;
   justify-content: space-between;
-  gap: 10px;
 }
 
 .friend__item {
-  flex: 0 0 20%;
   display: flex;
+  flex: 0 0 20%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -151,41 +161,45 @@
 }
 
 .newPost {
-  padding: 15px;
+  overflow: hidden;
   display: flex;
-  justify-content: space-between;
   gap: 10px;
   align-items: center;
+  justify-content: space-between;
+
+  padding: 15px;
+
   border: 1px solid #1f1d1d;
   border-radius: 20px;
-  overflow: hidden;
 }
 
 .newPost__body {
   display: flex;
-  align-items: center;
   gap: 10px;
+  align-items: center;
 }
 
 .newPost__logo {
+  position: relative;
   width: 30px;
   height: 30px;
-  position: relative;
 }
 
 .newPost__foto {
   position: absolute;
-  width: 100%;
-  height: 100%;
   top: 0;
   left: 0;
+
+  width: 100%;
+  height: 100%;
+
   object-fit: cover;
   border-radius: 50%;
 }
 
 .newPost__btn {
-  align-self: flex-end;
   align-items: end;
+  align-self: flex-end;
 }
 
 .post__block {
@@ -195,55 +209,61 @@
 }
 
 .contentPost {
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   gap: 15px;
+
   padding: 15px;
+
   border: 1px solid #1f1d1d;
   border-radius: 20px;
-  overflow: hidden;
 }
 
 .contentPost__top {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   gap: 10px;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .contentPost__block {
   display: flex;
-  align-items: center;
   gap: 10px;
+  align-items: center;
 }
 
 .contentPost__logo {
+  position: relative;
   width: 40px;
   height: 40px;
-  position: relative;
 }
 
 .contentPost__foto {
   position: absolute;
-  width: 100%;
-  height: 100%;
   top: 0;
   left: 0;
+
+  width: 100%;
+  height: 100%;
+
   object-fit: cover;
   border-radius: 50%;
 }
 
 .contentPost__picture {
-  padding-bottom: 60%;
   position: relative;
+  padding-bottom: 60%;
 }
 
 .contentPost__image {
   position: absolute;
-  width: 100%;
-  height: 100%;
   top: 0;
   left: 0;
+
+  width: 100%;
+  height: 100%;
+
   object-fit: cover;
   border-radius: 10px;
 }

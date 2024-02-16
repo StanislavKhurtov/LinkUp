@@ -2,10 +2,10 @@
 @import '@/app/styles/base/mixins';
 
 .chat {
+  overflow: hidden;
   padding: 30px 20px 20px;
   border: 1px solid #1f1d1d;
   border-radius: 20px;
-  overflow: hidden;
 }
 
 .chat__body {
@@ -25,8 +25,8 @@
 .message__image {
   width: 40px;
   height: 40px;
-  border-radius: 50%;
   object-fit: cover;
+  border-radius: 50%;
 }
 
 .message__body {
@@ -39,6 +39,6 @@
 
 .panel {
   display: flex;
-  align-items: center;
   gap: 20px;
+  align-items: center;
 }
