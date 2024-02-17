@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { Link, useNavigate } from 'react-router-dom'
 
+import { Edit } from '@/assets/icons'
 import { Linear } from '@/components/ui'
 import { useLogOutMutation } from '@/pages/auth/api'
 
@@ -22,6 +23,7 @@ export const LogoutLink = () => {
   return (
     <Link className={s.header__login} onClick={handleLogout} to={'/login'}>
       {t('LogOut')}
+      <Edit className={'icon'} />
     </Link>
   )
 }

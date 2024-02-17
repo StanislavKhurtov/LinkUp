@@ -30,6 +30,7 @@
 .top__bg {
   position: relative;
   padding-bottom: 30%;
+  transition: all 0.5s ease 0s;
 }
 
 .top__image {
@@ -41,6 +42,34 @@
   height: 100%;
 
   object-fit: cover;
+}
+
+.top__edit {
+  content: '';
+
+  position: absolute;
+  z-index: 2;
+  top: 5%;
+  right: 3%;
+
+  display: none;
+
+  padding: 10px 15px;
+
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+
+  background: rgb(0 0 0 / 40%);
+  border: 1px solid rgb(26 26 26 / 23%);
+  border-radius: 3px;
+
+  transition: all 0.5s ease 0s;
+}
+
+.top__bg:hover .top__edit {
+  display: block;
+  transition: all 0.5s ease 0s;
 }
 
 .top__body {

@@ -4,6 +4,9 @@
 .header__login {
   @include adaptiveValue('font-size', 14, 10, 700, 360, 1);
 
+  display: flex;
+  gap: 5px;
+  align-items: center;
   transition: all 0.3s ease 0s;
 
   &:hover {

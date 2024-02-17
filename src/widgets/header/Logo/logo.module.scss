@@ -6,8 +6,16 @@
 
   display: flex;
   align-items: center;
+
   text-decoration: none;
+
   background: none;
+
+  transition: all 0.5s ease 0s;
+
+  &:hover {
+    color: #2a7272;
+  }
 }
 
 .header__logo {

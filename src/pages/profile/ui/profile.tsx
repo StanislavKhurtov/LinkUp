@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { NavLink, useParams } from 'react-router-dom'
 
-import { PushIcon } from '@/assets/icons'
+import { Pencil, PushIcon } from '@/assets/icons'
 import bg from '@/assets/image/bg.jpg'
 import bg2 from '@/assets/image/bg2.jpg'
 import noImage from '@/assets/image/noImage.jpg'
@@ -33,6 +33,10 @@ export const Profile = () => {
             className={s.top__image}
             src={profileData?.photos.large !== null ? profileData?.photos.large : bg}
           />
+          <Button className={s.top__edit} to={'#'} variant={'Link'}>
+            <Pencil className={'icon'} />
+            {t('Change cover')}
+          </Button>
         </div>
         <div className={s.top__body}>
           <div className={s.top__left}>
