@@ -18,6 +18,9 @@ export const Settings = () => {
   const handleClickFR = () => {
     i18n.changeLanguage('fr')
   }
+  const handleClickZH = () => {
+    i18n.changeLanguage('zh')
+  }
 
   return (
     <div className={s.settings}>
@@ -57,6 +60,13 @@ export const Settings = () => {
                 variant={'primary'}
               >
                 Français
+              </Button>
+              <Button
+                className={currentLanguage === 'zh' ? s.active : ''}
+                onClick={handleClickZH}
+                variant={'primary'}
+              >
+                汉语
               </Button>
             </div>
           </div>
