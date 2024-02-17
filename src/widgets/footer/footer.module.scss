@@ -1,3 +1,15 @@
-.footer{
-  padding: 20px 0;
+.footer {
+  padding: 10px 0;
+  font-size: 12px;
+}
+
+.footer__block {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer__lang {
+  display: flex;
+  gap: 10px;
 }
