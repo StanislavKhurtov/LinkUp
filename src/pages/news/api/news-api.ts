@@ -1,3 +1,4 @@
+import { NewsType } from '@/pages/news/api/newsApi.types'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 export const imageApi = createApi({
@@ -8,7 +9,7 @@ export const imageApi = createApi({
     },
   }),
   endpoints: builder => ({
-    getImage: builder.query<any, any>({
+    getImage: builder.query<NewsType, any>({
       query: params => {
         return {
           params: params ?? '',
