@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
 
+import { Button } from '@/components/ui'
 import { ToggleThemes } from '@/components/ui/theme/toggleThemes'
 
 import s from './settings.module.scss'
@@ -36,15 +37,27 @@ export const Settings = () => {
           </div>
           <div className={s.settings__rigth}>
             <div className={s.language__btns}>
-              <button className={currentLanguage === 'en' ? s.active : ''} onClick={handleClickEN}>
+              <Button
+                className={currentLanguage === 'en' ? s.active : ''}
+                onClick={handleClickEN}
+                variant={'primary'}
+              >
                 English
-              </button>
-              <button className={currentLanguage === 'ru' ? s.active : ''} onClick={handleClickRU}>
+              </Button>
+              <Button
+                className={currentLanguage === 'ru' ? s.active : ''}
+                onClick={handleClickRU}
+                variant={'primary'}
+              >
                 Русский
-              </button>
-              <button className={currentLanguage === 'fr' ? s.active : ''} onClick={handleClickFR}>
+              </Button>
+              <Button
+                className={currentLanguage === 'fr' ? s.active : ''}
+                onClick={handleClickFR}
+                variant={'primary'}
+              >
                 Français
-              </button>
+              </Button>
             </div>
           </div>
         </div>

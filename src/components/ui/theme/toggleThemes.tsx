@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import { Button } from '@/components/ui'
 
 export const ToggleThemes = () => {
-  const [currentTheme, setCurrentTheme] = useState('') // Хранение текущей темы
+  const [currentTheme, setCurrentTheme] = useState('')
+  const { t } = useTranslation()
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme')
@@ -25,7 +27,7 @@ export const ToggleThemes = () => {
 
   return (
     <Button onClick={toggleTheme} variant={'link'}>
-      {currentTheme === 'light' ? <div>Light</div> : <div>Dark</div>}
+      {currentTheme === 'light' ? t('Light') : t('Dark')}
     </Button>
   )
 }

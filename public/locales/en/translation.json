@@ -26,5 +26,7 @@
   "Email": "Email",
   "Password": "Password",
   "Presentation": "Welcome to the new world!",
-  "SubTitle": "Look for friends, make contact, communicate in a general chat, listen to music, this world is all for you!"
+  "SubTitle": "Look for friends, make contact, communicate in a general chat, listen to music, this world is all for you!",
+  "Light": "Light",
+  "Dark": "Dark"
 }
