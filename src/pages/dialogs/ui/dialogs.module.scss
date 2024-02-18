@@ -1,0 +1,55 @@
+.dialog__block {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  padding: 30px 20px 20px;
+
+  border: 1px solid #1f1d1d;
+  border-radius: 20px;
+}
+
+.dialog__item {
+  display: flex;
+  gap: 30px;
+}
+
+.dialog__logo {
+  position: relative;
+  flex: 0 0 80px;
+  height: 80px;
+}
+
+.dialog__image {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.dialog__body {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+
+  width: 100%;
+  padding-top: 10px;
+}
+
+.dialog__info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.users__button {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+  color: #656262;
+}
