@@ -1,12 +1,13 @@
 import { baseApi } from '@/app/services/baseApi'
 import { ResponseType } from '@/app/services/baseApi/baseApi.types'
+import { DialogType } from '@/pages/dialogs/api/dialog.types'
 import { CreateProfileArgs, ProfileType } from '@/pages/profile/api/profile.types'
 
 const dialogService = baseApi.injectEndpoints({
   endpoints: builder => {
     return {
       createProfile: builder.mutation<ResponseType, CreateProfileArgs>({
-        invalidatesTags: ['Profile'],
+        invalidatesTags: ['Dialogs'],
         query: args => ({
           body: args,
           method: 'PUT',
@@ -14,7 +15,7 @@ const dialogService = baseApi.injectEndpoints({
         }),
       }),
       createProfilePhoto: builder.mutation<ResponseType, { image: string }>({
-        invalidatesTags: ['Profile'],
+        invalidatesTags: ['Dialogs'],
         query: args => ({
           body: args.image,
           method: 'PUT',
@@ -22,26 +23,26 @@ const dialogService = baseApi.injectEndpoints({
         }),
       }),
       createProfileStatus: builder.mutation<ResponseType, { status: string }>({
-        invalidatesTags: ['Profile'],
+        invalidatesTags: ['Dialogs'],
         query: args => ({
           body: args.status,
           method: 'PUT',
           url: 'profile/status',
         }),
       }),
-      getProfileById: builder.query<ProfileType, { userId: number }>({
-        providesTags: ['Profile'],
-        query: ({ userId }) => {
+      getDialogs: builder.query<DialogType[], void>({
+        providesTags: ['Dialogs'],
+        query: () => {
           return {
-            url: `profile/${userId}`,
+            url: `dialogs`,
           }
         },
       }),
-      getProfileStatusById: builder.query<string, { userId: number }>({
-        providesTags: ['Profile'],
+      getProfileById: builder.query<ProfileType, { userId: number }>({
+        providesTags: ['Dialogs'],
         query: ({ userId }) => {
           return {
-            url: `profile/status/${userId}`,
+            url: `profile/${userId}`,
           }
         },
       }),
@@ -49,12 +50,4 @@ const dialogService = baseApi.injectEndpoints({
   },
 })
 
-export const { useGetProfileByIdQuery, useGetProfileStatusByIdQuery } = dialogService
-
-/*
-useCreateProfileMutation,
-useCreateProfilePhotoMutation,
-useCreateProfileStatusMutation,
-useGetProfileByIdQuery,
-useGetProfileStatusByIdQuery,
-*/
+export const { useGetDialogsQuery } = dialogService
