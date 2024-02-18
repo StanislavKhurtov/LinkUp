@@ -14,7 +14,7 @@ export const Dialogs = () => {
   }
 
   return (
-    <div className={s.dialog}>
+    <div className={s.dialog__block}>
       {data?.map(dialog => {
         return (
           <div className={s.dialog__item} key={dialog.id}>
@@ -32,8 +32,9 @@ export const Dialogs = () => {
                 <NavLink className={s.dialog__name} to={`/profile/${dialog.id}`}>
                   {dialog.userName}
                 </NavLink>
+                <div className={s.dialog__message}>{dialog.lastUserActivityDate}</div>
               </div>
-              <div className={s.dialog__message}>{dialog.lastUserActivityDate}</div>
+              <div className={s.dialog__message}>Message</div>
             </div>
           </div>
         )
