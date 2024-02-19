@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 
 import NoImage from '@/assets/image/noImage.jpg'
 import { Linear } from '@/components/ui'
@@ -7,6 +7,7 @@ import { useGetDialogsQuery } from '@/pages/dialogs/api'
 import s from './dialogs.module.scss'
 
 export const Dialogs = () => {
+  const navigate = useNavigate()
   const { data, isLoading } = useGetDialogsQuery()
 
   if (isLoading) {
@@ -17,7 +18,11 @@ export const Dialogs = () => {
     <div className={s.dialog__block}>
       {data?.map(dialog => {
         return (
-          <div className={s.dialog__item} key={dialog.id}>
+          <div
+            className={s.dialog__item}
+            key={dialog.id}
+            onClick={() => navigate(`/message/dialog/${dialog.id}`)}
+          >
             <div className={s.dialog__logo}>
               <NavLink to={`/profile/${dialog.id}`}>
                 <img
