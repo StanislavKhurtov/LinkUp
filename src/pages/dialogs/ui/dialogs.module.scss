@@ -1,23 +1,46 @@
 .dialog__block {
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  gap: 20px;
 
-  padding: 30px 20px 20px;
+  padding: 20px 0 0;
 
   border: 1px solid #1f1d1d;
   border-radius: 20px;
 }
 
 .dialog__item {
+  position: relative;
+
   display: flex;
   gap: 30px;
+
+  padding: 10px 30px;
+
+  transition: all 0.3s ease 0s;
+
+  &::after {
+    content: '';
+
+    position: absolute;
+    right: 0;
+    bottom: 0;
+
+    width: 89%;
+    height: 1px;
+
+    background-color: #1f1d1d;
+  }
+
+  &:hover {
+    background-color: #333;
+  }
 }
 
 .dialog__logo {
   position: relative;
-  flex: 0 0 80px;
-  height: 80px;
+  flex: 0 0 50px;
+  height: 50px;
 }
 
 .dialog__image {
@@ -36,9 +59,7 @@
   display: flex;
   flex-direction: column;
   gap: 25px;
-
   width: 100%;
-  padding-top: 10px;
 }
 
 .dialog__info {
