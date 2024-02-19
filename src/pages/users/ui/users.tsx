@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { NavLink, useSearchParams } from 'react-router-dom'
+import { NavLink, useNavigate, useSearchParams } from 'react-router-dom'
 
 import { Mess } from '@/assets/icons'
 import NoImage from '@/assets/image/noImage.jpg'
@@ -11,6 +11,7 @@ import { FollowButton } from '@/pages/users/ui/followButton'
 import s from './users.module.scss'
 
 export const Users = () => {
+  const navigate = useNavigate()
   const [showFriendsOnly, setShowFriendsOnly] = useState(false)
   const [searchParams, setSearchParams] = useSearchParams({ name: '', page: '1' })
   const page = Number(searchParams.get('page'))
@@ -89,7 +90,11 @@ export const Users = () => {
               <div className={s.users__status}>{user.status}</div>
             </div>
             <div className={s.users__btns}>
-              <Button className={s.users__button} variant={'primary'}>
+              <Button
+                className={s.users__button}
+                onClick={() => navigate(`/message/dialog/${user.id}`)}
+                variant={'primary'}
+              >
                 <Mess className={'icon'} />
                 {t('Write message')}
               </Button>
