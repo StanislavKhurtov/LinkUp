@@ -32,7 +32,9 @@ export const Dialogs = () => {
                 <NavLink className={s.dialog__name} to={`/profile/${dialog.id}`}>
                   {dialog.userName}
                 </NavLink>
-                <div className={s.dialog__message}>{dialog.lastUserActivityDate}</div>
+                <div className={s.dialog__date}>
+                  {new Date(dialog.lastUserActivityDate).toLocaleString()}
+                </div>
               </div>
               <div className={s.dialog__message}>Message</div>
             </div>
