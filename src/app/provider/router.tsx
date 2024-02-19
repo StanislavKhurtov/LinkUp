@@ -11,6 +11,7 @@ import { useMeQuery } from '@/pages/auth/api'
 import { LoginPage } from '@/pages/auth/ui/login/login'
 import { ChatPage } from '@/pages/chat/ui'
 import { Dialogs } from '@/pages/dialogs/ui'
+import { MessageDialogs } from '@/pages/dialogs/ui/messageDialog'
 import { Music } from '@/pages/music/ui'
 import { News } from '@/pages/news/ui'
 import { Profile } from '@/pages/profile/ui'
@@ -33,6 +34,10 @@ const privateRoutes: RouteObject[] = [
   {
     element: <Dialogs />,
     path: '/message',
+  },
+  {
+    element: <MessageDialogs />,
+    path: '/message/dialog/:userId',
   },
   {
     element: <Music />,
