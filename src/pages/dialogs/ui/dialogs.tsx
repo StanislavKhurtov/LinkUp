@@ -2,13 +2,14 @@ import { NavLink, useNavigate } from 'react-router-dom'
 
 import NoImage from '@/assets/image/noImage.jpg'
 import { Linear } from '@/components/ui'
-import { useGetDialogsQuery } from '@/pages/dialogs/api'
+import { useGetDialogsByIdQuery, useGetDialogsQuery } from '@/pages/dialogs/api'
 
 import s from './dialogs.module.scss'
 
 export const Dialogs = () => {
   const navigate = useNavigate()
   const { data, isLoading } = useGetDialogsQuery()
+  const { data: dataById } = useGetDialogsByIdQuery({ userId: 2 })
 
   if (isLoading) {
     return <Linear />
@@ -16,6 +17,7 @@ export const Dialogs = () => {
 
   return (
     <div className={s.dialog__block}>
+      <div>{JSON.stringify(dataById)}</div>
       {data?.map(dialog => {
         return (
           <div
