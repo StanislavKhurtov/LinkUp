@@ -1,7 +1,12 @@
 import { baseApi } from '@/app/services/baseApi'
 import { ResponseType } from '@/app/services/baseApi/baseApi.types'
-import { DialogType } from '@/pages/dialogs/api/dialog.types'
-import { CreateProfileArgs, ProfileType } from '@/pages/profile/api/profile.types'
+import {
+  DialogType,
+  MessageArgs,
+  MessageFriendType,
+  UserType,
+} from '@/pages/dialogs/api/dialog.types'
+import { CreateProfileArgs } from '@/pages/profile/api/profile.types'
 
 const dialogService = baseApi.injectEndpoints({
   endpoints: builder => {
@@ -38,11 +43,20 @@ const dialogService = baseApi.injectEndpoints({
           }
         },
       }),
-      getProfileById: builder.query<ProfileType, { userId: number }>({
+      getDialogsById: builder.query<UserType, { userId: number }>({
         providesTags: ['Dialogs'],
         query: ({ userId }) => {
           return {
-            url: `profile/${userId}`,
+            url: `dialogs/${userId}`,
+          }
+        },
+      }),
+      getMessagesFriend: builder.query<MessageFriendType, MessageArgs>({
+        providesTags: ['Dialogs'],
+        query: params => {
+          return {
+            params: params ?? {},
+            url: `dialogs/${params.userId}/messages`,
           }
         },
       }),
@@ -50,4 +64,5 @@ const dialogService = baseApi.injectEndpoints({
   },
 })
 
-export const { useGetDialogsQuery } = dialogService
+export const { useGetDialogsByIdQuery, useGetDialogsQuery, useGetMessagesFriendQuery } =
+  dialogService
