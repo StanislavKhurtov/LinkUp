@@ -5,6 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { KeyboardArrowLeft } from '@/assets/icons'
 import { Button, TextField } from '@/components/ui'
 import { sendMessages } from '@/pages/chat/model/chatSlice'
+import { useGetMessagesFriendQuery } from '@/pages/dialogs/api'
 import { useAppDispatch } from '@/shared/lib/useAppDispatch'
 
 import s from './messageDialogs.module.scss'
@@ -15,6 +16,9 @@ export const MessageDialogs = () => {
   const { t } = useTranslation()
   const [message, setMessage] = useState('')
   const dispatch = useAppDispatch()
+  const { data: dataMmessages } = useGetMessagesFriendQuery({ userId: Number(userId) })
+
+  console.log('dataMmessages', dataMmessages)
   const handleTextareaChange = (e: ChangeEvent<HTMLInputElement>) =>
     setMessage(e.currentTarget.value)
   const sendMessageHandler = () => {
@@ -42,7 +46,11 @@ export const MessageDialogs = () => {
             <img alt={'logo-image-user'} src={''} />
           </div>
         </div>
-        <div className={s.message__body}></div>
+        <div className={s.message__body}>
+          {dataMmessages?.items.map(message => {
+            return message.body
+          })}
+        </div>
         <div className={s.message__panel}>
           <TextField onChange={handleTextareaChange} type={'text'} value={message}></TextField>
           <Button onClick={sendMessageHandler} variant={'primary'}>
