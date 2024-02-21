@@ -26,7 +26,7 @@ const dialogService = baseApi.injectEndpoints({
           }
         },
       }),
-      updateDialogsById: builder.mutation<UserType, { userId: number }>({
+      updateDialogsUsers: builder.mutation<UserType, { userId: number }>({
         invalidatesTags: ['Dialogs'],
         query: args => {
           return {
