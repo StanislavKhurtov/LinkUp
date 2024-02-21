@@ -16,9 +16,7 @@ export const MessageDialogs = () => {
   const { t } = useTranslation()
   const [message, setMessage] = useState('')
   const dispatch = useAppDispatch()
-  const { data: dataMmessages } = useGetMessagesFriendQuery({ userId: Number(userId) })
-
-  console.log('dataMmessages', dataMmessages)
+  const { data: dataMessages } = useGetMessagesFriendQuery({ userId: Number(userId) })
   const handleTextareaChange = (e: ChangeEvent<HTMLInputElement>) =>
     setMessage(e.currentTarget.value)
   const sendMessageHandler = () => {
@@ -47,7 +45,7 @@ export const MessageDialogs = () => {
           </div>
         </div>
         <div className={s.message__body}>
-          {dataMmessages?.items.map(message => {
+          {dataMessages?.items.map(message => {
             return message.body
           })}
         </div>
