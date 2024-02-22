@@ -6,6 +6,7 @@ import { Linear } from '@/components/ui'
 import { ControlledCheckbox } from '@/components/ui/controlled/controlled-checkbox'
 import { ControlledTextField } from '@/components/ui/controlled/controlled-text-field'
 import { useLoginMutation } from '@/pages/auth/api'
+import { VKButton } from '@/pages/auth/ui/vkButton'
 import { DevTool } from '@hookform/devtools'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
@@ -62,28 +63,34 @@ export const SignIn = () => {
   }
 
   return (
-    <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
-      <div className={s.form__presentation}>
-        <div className={s.form__title}>{t('Presentation')}</div>
-        <div className={s.form__subTitle}>{t('SubTitle')}</div>
+    <>
+      <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
+        <div className={s.form__presentation}>
+          <div className={s.form__title}>{t('Presentation')}</div>
+          <div className={s.form__subTitle}>{t('SubTitle')}</div>
+        </div>
+        <DevTool control={control} />
+        <ControlledTextField
+          control={control}
+          errorMessage={errors.email?.message}
+          label={t('Email')}
+          name={'email'}
+        />
+        <ControlledTextField
+          control={control}
+          errorMessage={errors.password?.message}
+          label={t('Password')}
+          name={'password'}
+        />
+        <ControlledCheckbox control={control} label={t('Save user')} name={'rememberMe'} />
+        <Button type={'submit'} variant={'secondary'}>
+          {t('Sign in')}
+        </Button>
+      </form>
+      <div>or</div>
+      <div className={s.oauth}>
+        <VKButton />
       </div>
-      <DevTool control={control} />
-      <ControlledTextField
-        control={control}
-        errorMessage={errors.email?.message}
-        label={t('Email')}
-        name={'email'}
-      />
-      <ControlledTextField
-        control={control}
-        errorMessage={errors.password?.message}
-        label={t('Password')}
-        name={'password'}
-      />
-      <ControlledCheckbox control={control} label={t('Save user')} name={'rememberMe'} />
-      <Button type={'submit'} variant={'secondary'}>
-        {t('Sign in')}
-      </Button>
-    </form>
+    </>
   )
 }
