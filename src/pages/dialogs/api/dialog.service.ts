@@ -10,6 +10,16 @@ import {
 const dialogService = baseApi.injectEndpoints({
   endpoints: builder => {
     return {
+      //удалить только для себя, а не для твоего собеседника
+      deleteDialogsUsers: builder.mutation<void, { messageId: string }>({
+        invalidatesTags: ['Dialogs'],
+        query: ({ messageId }) => {
+          return {
+            method: 'DELETE',
+            url: `dialogs/messages/${messageId}`,
+          }
+        },
+      }),
       //получить все диалоги
       getDialogs: builder.query<DialogType[], void>({
         providesTags: ['Dialogs'],
@@ -20,7 +30,7 @@ const dialogService = baseApi.injectEndpoints({
         },
       }),
       //ваше сообщение просмотрено
-      getMessageViewed: builder.query<any, { messageId: string }>({
+      getMessageViewed: builder.query<boolean, { messageId: string }>({
         providesTags: ['Dialogs'],
         query: ({ messageId }) => {
           return {
@@ -65,6 +75,7 @@ const dialogService = baseApi.injectEndpoints({
 })
 
 export const {
+  useDeleteDialogsUsersMutation,
   useGetDialogsQuery,
   useGetMessageViewedQuery,
   useGetMessagesFriendQuery,
