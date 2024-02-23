@@ -4,9 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 
 import { KeyboardArrowLeft } from '@/assets/icons'
 import { Button, TextField } from '@/components/ui'
-import { sendMessages } from '@/pages/chat/model/chatSlice'
-import { useGetMessagesFriendQuery } from '@/pages/dialogs/api'
-import { useAppDispatch } from '@/shared/lib/useAppDispatch'
+import { useGetMessagesFriendQuery, useSendMessageFriendMutation } from '@/pages/dialogs/api'
 
 import s from './messageDialogs.module.scss'
 
@@ -14,17 +12,18 @@ export const MessageDialogs = () => {
   const { userId } = useParams()
   const navigate = useNavigate()
   const { t } = useTranslation()
-  const [message, setMessage] = useState('')
-  const dispatch = useAppDispatch()
+  const [newMessage, setNewMessage] = useState('')
+
   const { data: dataMessages } = useGetMessagesFriendQuery({ userId: Number(userId) })
+  const [sendMessage] = useSendMessageFriendMutation()
   const handleTextareaChange = (e: ChangeEvent<HTMLInputElement>) =>
-    setMessage(e.currentTarget.value)
+    setNewMessage(e.currentTarget.value)
   const sendMessageHandler = () => {
-    if (!message) {
+    if (!newMessage) {
       return
     }
-    dispatch(sendMessages(message))
-    setMessage('')
+    sendMessage({ body: newMessage, userId: Number(userId) })
+    setNewMessage('')
   }
 
   const goBack = () => {
@@ -50,7 +49,7 @@ export const MessageDialogs = () => {
           })}
         </div>
         <div className={s.message__panel}>
-          <TextField onChange={handleTextareaChange} type={'text'} value={message}></TextField>
+          <TextField onChange={handleTextareaChange} type={'text'} value={newMessage}></TextField>
           <Button onClick={sendMessageHandler} variant={'primary'}>
             {t('Send')}
           </Button>

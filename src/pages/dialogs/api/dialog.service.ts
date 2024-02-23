@@ -34,7 +34,7 @@ const dialogService = baseApi.injectEndpoints({
         invalidatesTags: ['Dialogs'],
         query: args => {
           return {
-            body: args.body,
+            body: args,
             method: 'POST',
             url: `dialogs/${args.userId}/messages`,
           }
