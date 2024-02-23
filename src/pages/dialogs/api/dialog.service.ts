@@ -58,6 +58,10 @@ const dialogService = baseApi.injectEndpoints({
           }
         },
       }),
+      //список новых сообщений
+      getNewMessagesCount: builder.query<any, void>({
+        query: () => 'dialogs/messages/new/count',
+      }),
       //восстановить форму сообщения удалена и спам
       restoreDialogsUsers: builder.mutation<any, { messageId: string }>({
         invalidatesTags: ['Dialogs'],
@@ -99,6 +103,9 @@ export const {
   useGetDialogsQuery,
   useGetMessageViewedQuery,
   useGetMessagesFriendQuery,
+  useGetMessagesQuery,
+  useGetNewMessagesCountQuery,
+  useRestoreDialogsUsersMutation,
   useSendMessageFriendMutation,
   useUpdateDialogsUsersMutation,
 } = dialogService
