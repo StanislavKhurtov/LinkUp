@@ -58,3 +58,7 @@ export type MessageFriendTypeItems = {
   translatedBody?: any | string
   viewed: boolean
 }
+export type SendMessageToFriendArgs = {
+  body: string
+  userId: number
+}

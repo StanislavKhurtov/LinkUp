@@ -3,12 +3,14 @@ import {
   DialogType,
   MessageArgs,
   MessageFriendType,
+  SendMessageToFriendArgs,
   UserType,
 } from '@/pages/dialogs/api/dialog.types'
 
 const dialogService = baseApi.injectEndpoints({
   endpoints: builder => {
     return {
+      //получить все диалоги
       getDialogs: builder.query<DialogType[], void>({
         providesTags: ['Dialogs'],
         query: () => {
@@ -17,6 +19,7 @@ const dialogService = baseApi.injectEndpoints({
           }
         },
       }),
+      //получить список сообщений с вашим другом
       getMessagesFriend: builder.query<MessageFriendType, MessageArgs>({
         providesTags: ['Dialogs'],
         query: params => {
@@ -26,6 +29,18 @@ const dialogService = baseApi.injectEndpoints({
           }
         },
       }),
+      //отправить сообщение своему другу
+      sendMessageFriend: builder.mutation<MessageFriendType, SendMessageToFriendArgs>({
+        invalidatesTags: ['Dialogs'],
+        query: args => {
+          return {
+            body: args.body,
+            method: 'POST',
+            url: `dialogs/${args.userId}/messages`,
+          }
+        },
+      }),
+      //начните общение, обновите собеседника, чтобы он был сверху
       updateDialogsUsers: builder.mutation<UserType, { userId: number }>({
         invalidatesTags: ['Dialogs'],
         query: args => {
@@ -40,4 +55,9 @@ const dialogService = baseApi.injectEndpoints({
   },
 })
 
-export const { useGetDialogsQuery, useGetMessagesFriendQuery } = dialogService
+export const {
+  useGetDialogsQuery,
+  useGetMessagesFriendQuery,
+  useSendMessageFriendMutation,
+  useUpdateDialogsUsersMutation,
+} = dialogService
