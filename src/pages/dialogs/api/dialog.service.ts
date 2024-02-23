@@ -48,6 +48,16 @@ const dialogService = baseApi.injectEndpoints({
           }
         },
       }),
+      //восстановить форму сообщения удалена и спам
+      restoreDialogsUsers: builder.mutation<any, { messageId: string }>({
+        invalidatesTags: ['Dialogs'],
+        query: ({ messageId }) => {
+          return {
+            method: 'PUT',
+            url: `dialogs/messages/${messageId}/restore`,
+          }
+        },
+      }),
       //отправить сообщение своему другу
       sendMessageFriend: builder.mutation<MessageFriendType, SendMessageToFriendArgs>({
         invalidatesTags: ['Dialogs'],
