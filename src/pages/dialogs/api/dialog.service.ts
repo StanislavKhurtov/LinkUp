@@ -19,6 +19,15 @@ const dialogService = baseApi.injectEndpoints({
           }
         },
       }),
+      //ваше сообщение просмотрено
+      getMessageViewed: builder.query<any, { messageId: number }>({
+        providesTags: ['Dialogs'],
+        query: ({ messageId }) => {
+          return {
+            url: `dialogs/messages/${messageId}/viewed`,
+          }
+        },
+      }),
       //получить список сообщений с вашим другом
       getMessagesFriend: builder.query<MessageFriendType, MessageArgs>({
         providesTags: ['Dialogs'],
@@ -57,6 +66,7 @@ const dialogService = baseApi.injectEndpoints({
 
 export const {
   useGetDialogsQuery,
+  useGetMessageViewedQuery,
   useGetMessagesFriendQuery,
   useSendMessageFriendMutation,
   useUpdateDialogsUsersMutation,
