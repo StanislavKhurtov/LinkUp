@@ -38,6 +38,16 @@ const dialogService = baseApi.injectEndpoints({
           }
         },
       }),
+      //возвращать сообщения, новейшие, чем дата
+      getMessages: builder.query<any, { date: string; userId: number }>({
+        providesTags: ['Dialogs'],
+        query: params => {
+          return {
+            params: params ?? {},
+            url: `dialogs/${params.userId}/messages/new?newerThen=${params.date}`,
+          }
+        },
+      }),
       //получить список сообщений с вашим другом
       getMessagesFriend: builder.query<MessageFriendType, MessageArgs>({
         providesTags: ['Dialogs'],
