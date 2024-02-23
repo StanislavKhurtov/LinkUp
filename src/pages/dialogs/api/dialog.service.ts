@@ -20,7 +20,7 @@ const dialogService = baseApi.injectEndpoints({
         },
       }),
       //ваше сообщение просмотрено
-      getMessageViewed: builder.query<any, { messageId: number }>({
+      getMessageViewed: builder.query<any, { messageId: string }>({
         providesTags: ['Dialogs'],
         query: ({ messageId }) => {
           return {

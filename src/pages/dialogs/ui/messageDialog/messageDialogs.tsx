@@ -16,6 +16,7 @@ export const MessageDialogs = () => {
 
   const { data: dataMessages } = useGetMessagesFriendQuery({ userId: Number(userId) })
   const [sendMessage] = useSendMessageFriendMutation()
+
   const handleTextareaChange = (e: ChangeEvent<HTMLInputElement>) =>
     setNewMessage(e.currentTarget.value)
   const sendMessageHandler = () => {
