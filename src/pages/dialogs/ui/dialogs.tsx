@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import NoImage from '@/assets/image/noImage.jpg'
 import { Linear } from '@/components/ui'
@@ -24,19 +24,15 @@ export const Dialogs = () => {
             onClick={() => navigate(`/message/dialog/${dialog.id}`)}
           >
             <div className={s.dialog__logo}>
-              <NavLink to={`/profile/${dialog.id}`}>
-                <img
-                  alt={'image logo'}
-                  className={s.dialog__image}
-                  src={dialog.photos.small !== null ? dialog.photos.small : NoImage}
-                />
-              </NavLink>
+              <img
+                alt={'image logo'}
+                className={s.dialog__image}
+                src={dialog.photos.small !== null ? dialog.photos.small : NoImage}
+              />
             </div>
             <div className={s.dialog__body}>
               <div className={s.dialog__info}>
-                <NavLink className={s.dialog__name} to={`/profile/${dialog.id}`}>
-                  {dialog.userName}
-                </NavLink>
+                {dialog.userName}
                 <div className={s.dialog__date}>
                   {new Date(dialog.lastUserActivityDate).toLocaleString()}
                 </div>
