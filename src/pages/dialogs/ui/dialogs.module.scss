@@ -10,6 +10,8 @@
 }
 
 .dialog__item {
+  cursor: pointer;
+
   position: relative;
 
   display: flex;
@@ -58,7 +60,7 @@
 .dialog__body {
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  gap: 15px;
   width: 100%;
 }
 
