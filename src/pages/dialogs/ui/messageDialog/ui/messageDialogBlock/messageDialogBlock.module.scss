@@ -1,0 +1,54 @@
+.message__body {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 30px;
+
+  padding: 20px 0;
+}
+
+.message__dateMessage {
+  display: flex;
+  justify-content: center;
+  color: #818181;
+}
+
+.message__items {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.message__userPhoto_ibg {
+  width: 40px;
+  height: 40px;
+
+  img {
+    border-radius: 50%;
+  }
+}
+
+.message__block {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.message__info {
+  display: flex;
+  gap: 5px;
+}
+
+.message__date {
+  color: #818181;
+}
+
+.message__name {
+  color: #70a9e9;
+  transition: all 0.4s ease 0s;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
