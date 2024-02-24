@@ -2,19 +2,19 @@ import { ChangeEvent, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate, useParams } from 'react-router-dom'
 
-import { KeyboardArrowLeft } from '@/assets/icons'
 import { Button, TextField } from '@/components/ui'
-import { useGetMessagesFriendQuery, useSendMessageFriendMutation } from '@/pages/dialogs/api'
+import { useSendMessageFriendMutation } from '@/pages/dialogs/api'
+import { MessageDialogBlock } from '@/pages/dialogs/ui/messageDialog/ui/messageDialogBlock/messageDialogBlock'
+import { MessageHeader } from '@/pages/dialogs/ui/messageDialog/ui/messageHeader/messageHeader'
 
 import s from './messageDialogs.module.scss'
 
 export const MessageDialogs = () => {
   const { userId } = useParams()
-  const navigate = useNavigate()
   const { t } = useTranslation()
+  const navigate = useNavigate()
   const [newMessage, setNewMessage] = useState('')
 
-  const { data: dataMessages } = useGetMessagesFriendQuery({ userId: Number(userId) })
   const [sendMessage] = useSendMessageFriendMutation()
 
   const handleTextareaChange = (e: ChangeEvent<HTMLInputElement>) =>
@@ -27,28 +27,11 @@ export const MessageDialogs = () => {
     setNewMessage('')
   }
 
-  const goBack = () => {
-    navigate(-1)
-  }
-
   return (
     <div className={s.dialogsMessage}>
       <div className={s.message__block}>
-        <div className={s.message__top}>
-          <div className={s.top__back} onClick={goBack}>
-            <KeyboardArrowLeft className={'icon'} />
-            Назад
-          </div>
-          <div className={s.top__name}>Имя {userId}</div>
-          <div className={s.top__logoUser}>
-            <img alt={'logo-image-user'} src={''} />
-          </div>
-        </div>
-        <div className={s.message__body}>
-          {dataMessages?.items.map(message => {
-            return message.body
-          })}
-        </div>
+        <MessageHeader />
+        <MessageDialogBlock />
         <div className={s.message__panel}>
           <TextField onChange={handleTextareaChange} type={'text'} value={newMessage}></TextField>
           <Button onClick={sendMessageHandler} variant={'primary'}>

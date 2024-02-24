@@ -9,34 +9,11 @@
   flex: 0 1 60%;
   flex-direction: column;
 
-  height: 80svh;
   padding: 20px;
 
   background-color: #222;
   border: 1px solid #1f1d1d;
   border-radius: 20px;
-}
-
-.message__top {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  justify-content: space-between;
-
-  padding: 10px 0;
-
-  border-bottom: 1px solid #1f1d1d;
-}
-
-.top__back {
-  display: flex;
-  gap: 2px;
-  align-items: center;
-  color: #656262;
-}
-
-.message__body {
-  flex: 1 1 auto;
 }
 
 .message__navigation {
