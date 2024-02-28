@@ -1,7 +1,8 @@
 import { useTranslation } from 'react-i18next'
 import { useNavigate, useParams } from 'react-router-dom'
 
-import { AddMessage } from '@/pages/dialogs/ui/messageDialog/ui/addMessage/addMessage'
+import { AddItemForm } from '@/components/ui/addItemForm'
+import { useSendMessageFriendMutation } from '@/pages/dialogs/api'
 import { MessageDialogBlock } from '@/pages/dialogs/ui/messageDialog/ui/messageDialogBlock/messageDialogBlock'
 import { MessageHeader } from '@/pages/dialogs/ui/messageDialog/ui/messageHeader/messageHeader'
 
@@ -11,13 +12,17 @@ export const MessageDialogs = () => {
   const { userId } = useParams()
   const { t } = useTranslation()
   const navigate = useNavigate()
+  const [sendMessage] = useSendMessageFriendMutation()
+  const sendMessageToUser = (message: string) => {
+    sendMessage({ body: message, userId: Number(userId) })
+  }
 
   return (
     <div className={s.dialogsMessage}>
       <div className={s.message__block}>
         <MessageHeader />
         <MessageDialogBlock />
-        <AddMessage />
+        <AddItemForm addItem={sendMessageToUser} trigger={t('Send')} />
       </div>
       <div className={s.message__navigation}>
         <div className={s.navigation__top}>
