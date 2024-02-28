@@ -1,9 +1,9 @@
-import React, { ChangeEvent, useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 
 import { RootState } from '@/app/store'
-import { Button, TextField } from '@/components/ui'
+import { AddItemForm } from '@/components/ui/addItemForm'
 import {
   sendMessages,
   startMessagesListening,
@@ -29,6 +29,7 @@ export const ChatPage: React.FC = () => {
 
 export const Chat: React.FC = () => {
   const dispatch = useAppDispatch()
+  const { t } = useTranslation()
 
   useEffect(() => {
     dispatch(startMessagesListening())
@@ -38,10 +39,17 @@ export const Chat: React.FC = () => {
     }
   }, [])
 
+  const sendMessage = (message: string) => {
+    if (!message) {
+      return
+    }
+    dispatch(sendMessages(message))
+  }
+
   return (
     <div className={s.chat__body}>
       <Messages />
-      <AddMessageForm />
+      <AddItemForm addItem={sendMessage} trigger={t('Send')} />
     </div>
   )
 }
@@ -67,30 +75,6 @@ export const Message: React.FC<{ message: ChatMessageType }> = ({ message }) => 
         <div className={s.message__text}>{message.message}</div>
       </div>
       <hr />
-    </div>
-  )
-}
-
-export const AddMessageForm: React.FC = () => {
-  const { t } = useTranslation()
-  const [message, setMessage] = useState('')
-  const dispatch = useAppDispatch()
-  const handleTextareaChange = (e: ChangeEvent<HTMLInputElement>) =>
-    setMessage(e.currentTarget.value)
-  const sendMessageHandler = () => {
-    if (!message) {
-      return
-    }
-    dispatch(sendMessages(message))
-    setMessage('')
-  }
-
-  return (
-    <div className={s.panel}>
-      <TextField onChange={handleTextareaChange} type={'text'} value={message}></TextField>
-      <Button onClick={sendMessageHandler} variant={'primary'}>
-        {t('Send')}
-      </Button>
     </div>
   )
 }
