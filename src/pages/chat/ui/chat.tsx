@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
-import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 
 import { RootState } from '@/app/store'
+import Push from '@/assets/icons/push'
 import { AddItemForm } from '@/components/ui/addItemForm'
 import {
   sendMessages,
@@ -29,7 +29,6 @@ export const ChatPage: React.FC = () => {
 
 export const Chat: React.FC = () => {
   const dispatch = useAppDispatch()
-  const { t } = useTranslation()
 
   useEffect(() => {
     dispatch(startMessagesListening())
@@ -49,7 +48,7 @@ export const Chat: React.FC = () => {
   return (
     <div className={s.chat__body}>
       <Messages />
-      <AddItemForm addItem={sendMessage} trigger={t('Send')} />
+      <AddItemForm addItem={sendMessage} trigger={<Push className={'icon'} />} />
     </div>
   )
 }
