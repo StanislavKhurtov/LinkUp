@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { useNavigate, useParams } from 'react-router-dom'
 
+import Push from '@/assets/icons/push'
 import { AddItemForm } from '@/components/ui/addItemForm'
 import { useSendMessageFriendMutation } from '@/pages/dialogs/api'
 import { MessageDialogBlock } from '@/pages/dialogs/ui/messageDialog/ui/messageDialogBlock/messageDialogBlock'
@@ -22,7 +23,7 @@ export const MessageDialogs = () => {
       <div className={s.message__block}>
         <MessageHeader />
         <MessageDialogBlock />
-        <AddItemForm addItem={sendMessageToUser} trigger={t('Send')} />
+        <AddItemForm addItem={sendMessageToUser} trigger={<Push className={'icon'} />} />
       </div>
       <div className={s.message__navigation}>
         <div className={s.navigation__top}>
