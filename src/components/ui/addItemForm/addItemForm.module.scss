@@ -1,0 +1,25 @@
+.AddItemForm {
+  position: relative;
+}
+
+.input {
+  width: 100%;
+  padding: 5px 50px 5px 20px;
+
+  font-size: 16px;
+  line-height: 150%;
+  color: grey;
+
+  background-color: transparent;
+  border: 1px solid #8a7b7b;
+  border-radius: 3px;
+}
+
+.btn {
+  content: '';
+
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  transform: translateY(-50%);
+}
