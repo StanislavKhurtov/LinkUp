@@ -34,8 +34,10 @@ export const Profile = () => {
             src={profileData?.photos.large !== null ? profileData?.photos.large : bg}
           />
           <Button className={s.top__edit} to={'#'} variant={'Link'}>
-            <Pencil className={'icon'} />
-            {t('Change cover')}
+            <div className={s.top__link}>
+              <Pencil className={'icon'} />
+              {t('Change cover')}
+            </div>
           </Button>
         </div>
         <div className={s.top__body}>
