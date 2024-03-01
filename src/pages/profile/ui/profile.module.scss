@@ -54,17 +54,23 @@
 
   display: none;
 
-  padding: 10px 15px;
+  padding: 5px 10px;
 
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 500;
   color: #fff;
 
   background: rgb(0 0 0 / 40%);
   border: 1px solid rgb(26 26 26 / 23%);
-  border-radius: 3px;
 
   transition: all 0.5s ease 0s;
+}
+
+.top__link {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  border-radius: 5px;
 }
 
 .top__bg:hover .top__edit {
